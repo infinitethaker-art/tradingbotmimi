@@ -1,0 +1,20 @@
+# Broker
+alpaca-py>=0.35.0
+
+# Data
+pandas>=2.0.0
+numpy>=1.26.0
+pandas-ta>=0.3.14b0
+pandas-market-calendars>=4.3.1
+
+# Config
+python-dotenv>=1.0.0
+
+# Scheduling (Phase 2 — listed now for easy install)
+APScheduler>=3.10.0
+
+# Alerts
+requests>=2.31.0
+
+# Utilities
+websocket-client>=1.7.0
