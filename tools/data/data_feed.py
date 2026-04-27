@@ -3,10 +3,9 @@ Fetches historical bars from Alpaca Data API v2.
 Always attaches the data_feed label (iex / sip) to every record.
 This label is mandatory in every downstream schema — never strip it.
 
-Lookback buffer: bar_minutes * n_bars * 3 minutes back from the last completed
-bar boundary. This covers weekends and single holidays. Extended holiday clusters
-(e.g. week between Christmas and New Year) may still return fewer bars than
-requested; callers must handle a short list.
+Lookback buffer: bar_minutes * n_bars * 10 minutes back from the last completed
+bar boundary (~5 calendar days). This covers weekends and most holiday clusters.
+Callers must still handle a short list in case of extended closures.
 """
 import datetime
 import logging
@@ -85,8 +84,10 @@ def fetch_bars(
     if end is None:
         end = _last_completed_bar_end(bar_minutes)
 
-    # bar_minutes * n_bars * 3 minutes of lookback
-    lookback_minutes = bar_minutes * n_bars * 3
+    # bar_minutes * n_bars * 10 minutes of lookback (~5 calendar days).
+    # Multiplier of 3 (37.5h) was too short to span a weekend — Monday morning
+    # would land the window entirely in the weekend with no bars.
+    lookback_minutes = bar_minutes * n_bars * 10
     start = end - datetime.timedelta(minutes=lookback_minutes)
 
     request = StockBarsRequest(

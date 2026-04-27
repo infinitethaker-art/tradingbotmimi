@@ -19,12 +19,15 @@ Missing any required field raises ValueError before the dict is returned.
 disposition is always 'PENDING' here — risk layer sets the final disposition.
 """
 import datetime
+import logging
 import uuid
 from typing import Any
 from zoneinfo import ZoneInfo
 
 import config
 from tools.data.market_calendar import session_type
+
+logger = logging.getLogger(__name__)
 
 ET = ZoneInfo("America/New_York")
 
@@ -146,17 +149,21 @@ def evaluate(
     if config.ENABLE_SCAN_LOGS:
         spread = quote.get("spread_pct")
         spread_str = f"{spread:.3f}%" if spread is not None else "N/A"
-        macd_sym = "✓" if macd_cross else f"✗({prev_hist:+.4f}→{curr_hist:+.4f})"
-        rsi_sym = "✓" if rsi_ok else (
-            f"✗({rsi:.1f} {'HIGH' if rsi is not None and rsi > config.RSI_HIGH else 'LOW'})"
-            if rsi is not None else "✗(N/A)"
+        macd_sym = "OK" if macd_cross else f"NO({prev_hist:+.4f}->{curr_hist:+.4f})"
+        rsi_sym = "OK" if rsi_ok else (
+            f"NO({rsi:.1f} {'HIGH' if rsi is not None and rsi > config.RSI_HIGH else 'LOW'})"
+            if rsi is not None else "NO(N/A)"
         )
-        vol_sym = f"✓({rel_vol:.2f}x)" if volume_ok else (
-            f"✗({rel_vol:.2f}x)" if rel_vol is not None else "✗(N/A)"
+        vol_sym = f"OK({rel_vol:.2f}x)" if volume_ok else (
+            f"NO({rel_vol:.2f}x)" if rel_vol is not None else "NO(N/A)"
         )
-        bar_time = (bar_ts_str or "")[-5:] if bar_ts_str else "?"
+        try:
+            bar_dt = datetime.datetime.fromisoformat(bar_ts_str).astimezone(ET)
+            bar_time = bar_dt.strftime("%H:%M")
+        except Exception:
+            bar_time = "?"
         logger.info(
-            "SCAN %s %s — MACD%s RSI%s VOL%s SPREAD(%s) → %s",
+            "SCAN %s %s ET — MACD:%s RSI:%s VOL:%s SPREAD:%s -> %s",
             ctx_symbol, bar_time, macd_sym, rsi_sym, vol_sym, spread_str, signal_type,
         )
 

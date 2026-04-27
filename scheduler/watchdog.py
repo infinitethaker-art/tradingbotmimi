@@ -102,13 +102,18 @@ def _check_once() -> None:
         logger.info("Heartbeat OK — age=%.1f min.", age_minutes)
 
 
+_STARTUP_GRACE_SEC = 120  # wait before first check to let the bot write its first heartbeat
+
+
 def main() -> None:
     config.load()
     logger.info(
-        "Watchdog started. Check interval=%ds, stale threshold=%dmin.",
+        "Watchdog started. Check interval=%ds, stale threshold=%dmin. Grace period=%ds.",
         _CHECK_INTERVAL_SEC,
         config.WATCHDOG_STALE_THRESHOLD_MIN,
+        _STARTUP_GRACE_SEC,
     )
+    time.sleep(_STARTUP_GRACE_SEC)
     while True:
         try:
             _check_once()
