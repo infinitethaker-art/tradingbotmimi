@@ -28,9 +28,7 @@ from tools.data.market_calendar import session_type
 
 ET = ZoneInfo("America/New_York")
 
-# RSI bands — entries only when RSI is in a neutral zone (not overbought/oversold)
-RSI_LOW = 35.0
-RSI_HIGH = 65.0
+# RSI bands loaded from config — tune via RSI_LOW / RSI_HIGH in .env
 
 _REQUIRED_SIGNAL_FIELDS = {
     "event_id", "timestamp", "symbol", "data_feed", "session_type",
@@ -134,12 +132,33 @@ def evaluate(
     volume_ok = rel_vol is not None and rel_vol >= config.MIN_RELATIVE_VOLUME
 
     # Pure technical signal detection — no time-window gating here
-    if _crossover(prev_hist, curr_hist) and rsi is not None and RSI_LOW <= rsi <= RSI_HIGH and volume_ok:
+    macd_cross = _crossover(prev_hist, curr_hist)
+    rsi_ok = rsi is not None and config.RSI_LOW <= rsi <= config.RSI_HIGH
+
+    if macd_cross and rsi_ok and volume_ok:
         signal_type = "ENTER_LONG"
     elif _crossunder(prev_hist, curr_hist):
         signal_type = "EXIT_LONG"
     else:
         signal_type = "NO_SIGNAL"
+
+    # Per-tick scan log — one compact INFO line showing indicator values and pass/fail per condition
+    if config.ENABLE_SCAN_LOGS:
+        spread = quote.get("spread_pct")
+        spread_str = f"{spread:.3f}%" if spread is not None else "N/A"
+        macd_sym = "✓" if macd_cross else f"✗({prev_hist:+.4f}→{curr_hist:+.4f})"
+        rsi_sym = "✓" if rsi_ok else (
+            f"✗({rsi:.1f} {'HIGH' if rsi is not None and rsi > config.RSI_HIGH else 'LOW'})"
+            if rsi is not None else "✗(N/A)"
+        )
+        vol_sym = f"✓({rel_vol:.2f}x)" if volume_ok else (
+            f"✗({rel_vol:.2f}x)" if rel_vol is not None else "✗(N/A)"
+        )
+        bar_time = (bar_ts_str or "")[-5:] if bar_ts_str else "?"
+        logger.info(
+            "SCAN %s %s — MACD%s RSI%s VOL%s SPREAD(%s) → %s",
+            ctx_symbol, bar_time, macd_sym, rsi_sym, vol_sym, spread_str, signal_type,
+        )
 
     event: dict[str, Any] = {
         "event_id": str(uuid.uuid4()),

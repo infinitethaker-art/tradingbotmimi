@@ -29,12 +29,17 @@ _LOCK_PATH = os.path.join(_DB_DIR, "scheduler.lock")
 # Create db/ directory BEFORE configuring FileHandler so the handler never fails
 os.makedirs(_DB_DIR, exist_ok=True)
 
+from logging.handlers import RotatingFileHandler as _RotatingFileHandler
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
     handlers=[
         logging.StreamHandler(sys.stdout),
-        logging.FileHandler(os.path.join(_DB_DIR, "bot.log")),
+        _RotatingFileHandler(
+            os.path.join(_DB_DIR, "bot.log"),
+            maxBytes=10 * 1024 * 1024,
+            backupCount=5,
+        ),
     ],
 )
 logger = logging.getLogger("main")
@@ -74,6 +79,15 @@ def main() -> None:
             sys.exit(1)
 
     _acquire_lock()
+
+    # ── Runtime mode banner — unambiguous record in every log session ──────────
+    logger.info("=" * 60)
+    logger.info("RUNTIME MODE")
+    logger.info("  PAPER_TRADING : %s", config.PAPER_TRADING)
+    logger.info("  DRY_RUN       : %s", config.DRY_RUN)
+    logger.info("  AUTO_EXECUTE  : %s", config.AUTO_EXECUTE)
+    logger.info("  KILL_SWITCH   : %s", config.KILL_SWITCH)
+    logger.info("=" * 60)
 
     stop_event = threading.Event()
 

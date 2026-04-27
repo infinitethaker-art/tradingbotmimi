@@ -82,6 +82,11 @@ AUTO_EXECUTE: bool = False
 
 # ── Signal filters ────────────────────────────────────────────────────────────
 MIN_RELATIVE_VOLUME: float = 1.2
+RSI_LOW: float = 35.0
+RSI_HIGH: float = 65.0
+# Future spread filter — not yet enforced. Collect data first.
+MAX_SPREAD_PCT: float = 0.15
+ENABLE_SCAN_LOGS: bool = True
 
 # ── Day trade safety ──────────────────────────────────────────────────────────
 MAX_DAYTRADE_COUNT: int = 2
@@ -115,6 +120,10 @@ def load() -> None:
     global MANUAL_APPROVAL_WINDOW_SEC
     global AUTO_EXECUTE
     global MIN_RELATIVE_VOLUME
+    global RSI_LOW
+    global RSI_HIGH
+    global MAX_SPREAD_PCT
+    global ENABLE_SCAN_LOGS
     global MAX_DAYTRADE_COUNT
     global KILL_SWITCH
     global HEARTBEAT_INTERVAL_SEC
@@ -149,6 +158,10 @@ def load() -> None:
     MANUAL_APPROVAL_WINDOW_SEC = _int("MANUAL_APPROVAL_WINDOW_SEC", 120)
     AUTO_EXECUTE = _bool("AUTO_EXECUTE", False)
     MIN_RELATIVE_VOLUME = _float("MIN_RELATIVE_VOLUME", 1.2)
+    RSI_LOW = _float("RSI_LOW", 35.0)
+    RSI_HIGH = _float("RSI_HIGH", 65.0)
+    MAX_SPREAD_PCT = _float("MAX_SPREAD_PCT", 0.15)
+    ENABLE_SCAN_LOGS = _bool("ENABLE_SCAN_LOGS", True)
 
     MAX_DAYTRADE_COUNT = _int("MAX_DAYTRADE_COUNT", 2)
 
@@ -210,6 +223,12 @@ def validate() -> None:
         raise EnvironmentError("MANUAL_APPROVAL_WINDOW_SEC must be > 0.")
     if MIN_RELATIVE_VOLUME <= 0:
         raise EnvironmentError("MIN_RELATIVE_VOLUME must be > 0.")
+    if RSI_LOW < 0 or RSI_LOW >= RSI_HIGH:
+        raise EnvironmentError("RSI_LOW must be >= 0 and less than RSI_HIGH.")
+    if RSI_HIGH > 100:
+        raise EnvironmentError("RSI_HIGH must be <= 100.")
+    if MAX_SPREAD_PCT <= 0:
+        raise EnvironmentError("MAX_SPREAD_PCT must be > 0.")
     if MAX_DAYTRADE_COUNT < 0:
         raise EnvironmentError("MAX_DAYTRADE_COUNT must be >= 0.")
     if HEARTBEAT_INTERVAL_SEC <= 0:

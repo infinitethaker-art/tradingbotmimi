@@ -209,15 +209,23 @@ def alert_duplicate_scheduler(pid: int) -> bool:
 
 def alert_session_start(equity: float, loss_limit: float, symbols: list[str],
                         market_close: str, feed: str) -> bool:
+    mode = "PAPER" if config.PAPER_TRADING else "LIVE"
+    if config.DRY_RUN:
+        mode += " [DRY RUN]"
+    auto = "ON — trades execute automatically" if config.AUTO_EXECUTE else "OFF — manual approval required"
+    kill = "🔴 ACTIVE" if config.KILL_SWITCH else "off"
     text = (
         f"🟢 <b>SESSION START</b>\n"
-        f"Equity:      {_fmt_price(equity)}\n"
-        f"Loss limit:  {_fmt_price(loss_limit)} ({config.MAX_DAILY_LOSS_PCT*100:.1f}%)\n"
-        f"Symbols:     {_esc(', '.join(symbols))}\n"
-        f"Close:       {_esc(market_close)} ET\n"
-        f"Feed:        {_esc(feed).upper()}\n"
-        f"Mode:        {'PAPER' if config.PAPER_TRADING else 'LIVE'}"
-        + (" [DRY RUN]" if config.DRY_RUN else "")
+        f"Equity:       {_fmt_price(equity)}\n"
+        f"Loss limit:   {_fmt_price(loss_limit)} ({config.MAX_DAILY_LOSS_PCT*100:.1f}%)\n"
+        f"Symbols:      {_esc(', '.join(symbols))}\n"
+        f"Close:        {_esc(market_close)} ET\n"
+        f"Feed:         {_esc(feed).upper()}\n"
+        f"PAPER_TRADING: {config.PAPER_TRADING}\n"
+        f"DRY_RUN:      {config.DRY_RUN}\n"
+        f"AUTO_EXECUTE: {auto}\n"
+        f"KILL_SWITCH:  {kill}\n"
+        f"Mode:         {mode}"
     )
     return _send(text)
 

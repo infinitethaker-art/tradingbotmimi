@@ -20,6 +20,25 @@ from alpaca.data.timeframe import TimeFrame, TimeFrameUnit
 
 logger = logging.getLogger(__name__)
 
+# Transient network errors that are safe to retry
+_TRANSIENT_TYPES = (ConnectionResetError, TimeoutError, ConnectionError)
+_TRANSIENT_MSGS = ("connection reset", "timed out", "remote host", "broken pipe", "connection aborted")
+_RETRY_DELAYS = (2, 4)  # seconds between attempt 1→2 and 2→3
+
+
+def _is_transient(exc: BaseException) -> bool:
+    """Walk the full exception cause chain; return True if any node looks like a transient network error."""
+    seen: set[int] = set()
+    cur: BaseException | None = exc
+    while cur is not None and id(cur) not in seen:
+        seen.add(id(cur))
+        if isinstance(cur, _TRANSIENT_TYPES):
+            return True
+        if any(kw in str(cur).lower() for kw in _TRANSIENT_MSGS):
+            return True
+        cur = cur.__cause__ or cur.__context__
+    return False
+
 _UTC = datetime.timezone.utc
 
 
@@ -79,10 +98,20 @@ def fetch_bars(
         adjustment="raw",
     )
 
-    try:
-        bar_set = client.get_stock_bars(request)
-    except Exception as exc:
-        raise RuntimeError(f"fetch_bars failed for {symbol}: {exc}") from exc
+    last_exc: Exception | None = None
+    for attempt, delay in enumerate((*_RETRY_DELAYS, None)):
+        try:
+            bar_set = client.get_stock_bars(request)
+            break
+        except Exception as exc:
+            if not _is_transient(exc):
+                raise
+            last_exc = exc
+            if delay is not None:
+                logger.warning("fetch_bars transient error (attempt %d/3): %s — retrying in %ds", attempt + 1, exc, delay)
+                time.sleep(delay)
+    else:
+        raise RuntimeError(f"fetch_bars failed for {symbol} after 3 attempts: {last_exc}") from last_exc
 
     raw_bars = bar_set.data.get(symbol, [])
 
@@ -128,10 +157,20 @@ def fetch_latest_quote(symbol: str) -> dict[str, Any]:
 
     request = StockLatestQuoteRequest(symbol_or_symbols=symbol, feed=_feed_param())
 
-    try:
-        quotes = client.get_stock_latest_quote(request)
-    except Exception as exc:
-        raise RuntimeError(f"fetch_latest_quote failed for {symbol}: {exc}") from exc
+    last_exc2: Exception | None = None
+    for attempt, delay in enumerate((*_RETRY_DELAYS, None)):
+        try:
+            quotes = client.get_stock_latest_quote(request)
+            break
+        except Exception as exc:
+            if not _is_transient(exc):
+                raise
+            last_exc2 = exc
+            if delay is not None:
+                logger.warning("fetch_latest_quote transient error (attempt %d/3): %s — retrying in %ds", attempt + 1, exc, delay)
+                time.sleep(delay)
+    else:
+        raise RuntimeError(f"fetch_latest_quote failed for {symbol} after 3 attempts: {last_exc2}") from last_exc2
 
     q = quotes.get(symbol)
 
