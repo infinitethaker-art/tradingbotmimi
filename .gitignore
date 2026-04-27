@@ -15,8 +15,16 @@ pending_intent.json
 logs/
 *.log
 
-# ── Research (may contain sensitive backtest data) ────────────────────────────
-research/
+# ── Research (raw data and large exports ignored; safe artifacts tracked) ──────
+# Use research/* (not research/) so git still descends into subdirs for exceptions.
+research/*
+!research/backtest/
+research/backtest/*
+!research/backtest/*.py
+!research/backtest/*_results.json
+!research/notebooks/
+research/notebooks/*
+!research/notebooks/*.md
 
 # ── Python ────────────────────────────────────────────────────────────────────
 __pycache__/
