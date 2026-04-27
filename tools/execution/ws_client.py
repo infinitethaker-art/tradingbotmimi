@@ -147,6 +147,7 @@ class AlpacaWSClient:
         if stream == "listening":
             logger.info("WS listening: %s", data.get("streams"))
             self._connected.set()
+            _write_heartbeat()  # write immediately so watchdog sees a fresh heartbeat on startup
             self._attempt = 0  # reset counter on successful connection
             if self._on_ready:
                 self._on_ready()
