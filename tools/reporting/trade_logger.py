@@ -171,7 +171,16 @@ def log_signal(event: dict[str, Any]) -> None:
     with _conn() as conn:
         cursor = conn.execute(
             """
-            INSERT OR IGNORE INTO signal_events VALUES (
+            INSERT OR IGNORE INTO signal_events (
+                event_id, timestamp, symbol, data_feed, session_type,
+                bar_timestamp, signal_type, disposition, rejection_reason,
+                macd_line, macd_signal_line, macd_hist, rsi_14, ema_20,
+                bar_close, bar_volume, relative_volume, relative_volume_ok,
+                iex_bid, iex_ask, iex_spread_pct,
+                market_regime, signal_latency_ms,
+                session_start_equity, daily_loss_limit_usd, session_pnl_at_signal,
+                trading_date_et
+            ) VALUES (
                 :event_id, :timestamp, :symbol, :data_feed, :session_type,
                 :bar_timestamp, :signal_type, :disposition, :rejection_reason,
                 :macd_line, :macd_signal_line, :macd_hist, :rsi_14, :ema_20,
@@ -251,8 +260,8 @@ def daily_summary(date: str | None = None) -> dict[str, Any]:
             """
             SELECT
                 COUNT(*) as total_signals,
-                SUM(CASE WHEN disposition='SUBMITTED' THEN 1 ELSE 0 END) as taken,
-                SUM(CASE WHEN disposition='REJECTED' THEN 1 ELSE 0 END) as rejected
+                COALESCE(SUM(CASE WHEN disposition='SUBMITTED' THEN 1 ELSE 0 END), 0) as taken,
+                COALESCE(SUM(CASE WHEN disposition='REJECTED' THEN 1 ELSE 0 END), 0) as rejected
             FROM signal_events
             WHERE trading_date_et = ?
             """,

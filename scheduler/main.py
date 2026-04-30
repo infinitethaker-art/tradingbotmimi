@@ -4,12 +4,14 @@ Implements PID lock file to prevent duplicate instances.
 Sends session-start Telegram alert after Loop B is reconciled and ready.
 Loop A does not start until Loop B is ready.
 """
+import datetime
 import logging
 import os
 import queue
 import signal
 import sys
 import threading
+from zoneinfo import ZoneInfo
 
 # Ensure project root is on path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
@@ -24,6 +26,29 @@ from scheduler.loop_a import LoopA
 from scheduler.loop_b import LoopB
 
 _DB_DIR = os.path.join(os.path.dirname(__file__), "../db")
+_ET = ZoneInfo("America/New_York")
+
+
+def _midday_monitor(symbol: str, position_tracker, stop_event: threading.Event) -> None:
+    """Fire one Telegram status ping at noon ET, then exit."""
+    now = datetime.datetime.now(_ET)
+    noon = datetime.datetime.combine(now.date(), datetime.time(12, 0), tzinfo=_ET)
+    if now >= noon:
+        logger.info("Mid-session monitor: already past noon, skipping.")
+        return
+    wait_secs = (noon - now).total_seconds()
+    logger.info("Mid-session monitor: status ping in %.0fs (noon ET).", wait_secs)
+    if stop_event.wait(timeout=wait_secs):
+        return  # Shutdown before noon
+    try:
+        from tools.reporting.trade_logger import daily_summary
+        summary = daily_summary()
+        pos = position_tracker.get(symbol)
+        tg.send_midday_status(symbol, summary, pos)
+    except Exception as exc:
+        logger.error("Mid-session status failed: %s", exc)
+
+
 _LOCK_PATH = os.path.join(_DB_DIR, "scheduler.lock")
 
 # Create db/ directory BEFORE configuring FileHandler so the handler never fails
@@ -156,6 +181,14 @@ def main() -> None:
         target=loop_a.run, args=(symbol, stop_event), name="LoopA", daemon=True
     )
     loop_a_thread.start()
+
+    midday_thread = threading.Thread(
+        target=_midday_monitor,
+        args=(symbol, position_tracker, stop_event),
+        name="MidSessionMonitor",
+        daemon=True,
+    )
+    midday_thread.start()
 
     logger.info("Bot running. Symbol=%s Feed=%s Mode=%s",
                 symbol, config.ALPACA_DATA_FEED,

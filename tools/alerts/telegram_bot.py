@@ -244,6 +244,32 @@ def daily_report(summary: dict) -> bool:
     return _send(text)
 
 
+def send_midday_status(symbol: str, summary: dict, position) -> bool:
+    scans = summary.get("total_signals", 0)
+    taken = summary.get("taken", 0)
+    rejected = summary.get("rejected", 0)
+    pnl = summary.get("total_pnl", 0.0)
+    sign = "+" if pnl >= 0 else ""
+
+    if position is not None:
+        pos_str = (
+            f"{_esc(symbol)} @ {_fmt_price(position.entry_price)} "
+            f"(stop={_fmt_price(position.stop_price)}, tp={_fmt_price(position.take_profit)})"
+        )
+    else:
+        pos_str = "None"
+
+    text = (
+        f"🕛 <b>MID-SESSION — 12:00 ET</b>\n"
+        f"Scans:      {scans}\n"
+        f"Signals:    {taken} taken | {rejected} rejected\n"
+        f"Position:   {pos_str}\n"
+        f"PnL:        {sign}${pnl:.2f}\n"
+        f"Bot running."
+    )
+    return _send(text)
+
+
 if __name__ == "__main__":
     config.load()
     ok = send_raw("✅ Telegram connection test — trading bot is online.")
