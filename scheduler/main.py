@@ -11,6 +11,7 @@ import queue
 import signal
 import sys
 import threading
+import time
 from zoneinfo import ZoneInfo
 
 # Ensure project root is on path
@@ -213,4 +214,29 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    def _next_market_open() -> datetime.datetime:
+        check = datetime.datetime.now(_ET).date() + datetime.timedelta(days=1)
+        for _ in range(14):
+            if market_calendar.is_trading_day(check):
+                return market_calendar.market_open_time(check)
+            check += datetime.timedelta(days=1)
+        raise RuntimeError("No trading day found in next 14 days.")
+
+    while True:
+        now = datetime.datetime.now(_ET)
+        if market_calendar.is_trading_day(now.date()):
+            close = market_calendar.market_close_time(now.date())
+            if now < close:
+                main()
+
+        try:
+            next_open = _next_market_open()
+            sleep_secs = max(60, (next_open - datetime.datetime.now(_ET)).total_seconds())
+            logger.info("Next session %s ET — sleeping %.1fh.",
+                        next_open.strftime("%Y-%m-%d %H:%M"), sleep_secs / 3600)
+            deadline = time.monotonic() + sleep_secs
+            while time.monotonic() < deadline:
+                time.sleep(min(3600, deadline - time.monotonic()))
+        except Exception as exc:
+            logger.error("Sleep loop error: %s. Retrying in 60s.", exc)
+            time.sleep(60)
