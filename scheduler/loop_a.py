@@ -99,6 +99,11 @@ class LoopA:
         self._intent_queue = intent_queue  # shared queue to Loop B
         self._ws_client = ws_client
         self._session_pnl = 0.0
+        # Track which dates have already had session-start / noon ping sent.
+        # Initialised to today so we don't duplicate what main.py sends at startup.
+        _today = datetime.datetime.now(ET).date()
+        self._session_alerted_date = _today
+        self._noon_alerted_date = _today
 
     def tick(self, symbol: str) -> None:
         """Run one signal evaluation cycle for *symbol*."""
@@ -242,6 +247,39 @@ class LoopA:
             except queue.Full:
                 logger.warning("Intent queue full — could not queue EXIT_TIME for %s.", symbol)
 
+    def _send_daily_session_start(self, symbol: str) -> None:
+        """Fetch fresh equity and send the session-start Telegram for a new trading day."""
+        try:
+            from alpaca.trading.client import TradingClient
+            trading_client = TradingClient(
+                config.ALPACA_API_KEY, config.ALPACA_SECRET_KEY, paper=config.PAPER_TRADING
+            )
+            account = trading_client.get_account()
+            equity = float(account.equity)
+            today = datetime.datetime.now(ET).date()
+            close_time = market_calendar.market_close_time(today)
+            tg.alert_session_start(
+                equity=equity,
+                loss_limit=equity * 0.03,
+                symbols=config.WATCHLIST,
+                market_close=close_time.strftime("%H:%M"),
+                feed=config.ALPACA_DATA_FEED,
+            )
+            logger.info("Daily session-start alert sent for %s.", today)
+        except Exception as exc:
+            logger.error("Daily session-start alert failed: %s", exc)
+
+    def _send_noon_ping(self, symbol: str) -> None:
+        """Send mid-session Telegram ping."""
+        try:
+            from tools.reporting.trade_logger import daily_summary
+            summary = daily_summary()
+            pos = self._position_tracker.get(symbol)
+            tg.send_midday_status(symbol, summary, pos)
+            logger.info("Mid-session ping sent.")
+        except Exception as exc:
+            logger.error("Mid-session ping failed: %s", exc)
+
     def run(self, symbol: str, stop_event: threading.Event | None = None) -> None:
         """Blocking run loop. Sleeps to next bar boundary between ticks."""
         if stop_event is None:
@@ -249,7 +287,22 @@ class LoopA:
 
         logger.info("Loop A started for %s.", symbol)
         while not stop_event.is_set():
-            if market_calendar.is_trading_day():
+            now = datetime.datetime.now(ET)
+            today = now.date()
+
+            if market_calendar.is_trading_day(today):
+                open_time = market_calendar.market_open_time(today)
+
+                # Daily session-start alert (skips startup day — main.py already sent it)
+                if today != self._session_alerted_date and now >= open_time:
+                    self._send_daily_session_start(symbol)
+                    self._session_alerted_date = today
+
+                # Noon mid-session ping (skips startup day — main.py thread handles it)
+                if today != self._noon_alerted_date and now.hour >= 12:
+                    self._send_noon_ping(symbol)
+                    self._noon_alerted_date = today
+
                 try:
                     self.tick(symbol)
                 except Exception as exc:
