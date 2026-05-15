@@ -3,7 +3,7 @@ builder = "NIXPACKS"
 
 [deploy]
 startCommand = "python scheduler/main.py"
-restartPolicyType = "ON_FAILURE"
+restartPolicyType = "ALWAYS"
 
 [[volumes]]
 mountPath = "/app/db"
