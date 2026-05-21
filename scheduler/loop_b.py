@@ -46,6 +46,9 @@ class LoopB:
         # Maps order_id -> expected_fill_price for slippage calculation
         self._expected_prices: dict[str, float] = {}
 
+        # Maps order_id -> notional_usd (supports smoke test $50 override)
+        self._order_notionals: dict[str, float] = {}
+
         self._stop_event = threading.Event()
 
     def is_ready(self) -> bool:
@@ -130,6 +133,19 @@ class LoopB:
             finally:
                 self._intent_queue.task_done()
 
+    def register_pending_order(
+        self,
+        order_id: str,
+        tp_price: float,
+        sl_stop: float,
+        expected_price: float,
+        notional_usd: float,
+    ) -> None:
+        """Register an order submitted outside the intent queue (e.g. smoke test)."""
+        self._bracket_prices[order_id] = (tp_price, sl_stop)
+        self._expected_prices[order_id] = expected_price
+        self._order_notionals[order_id] = notional_usd
+
     def _execute_entry(self, signal_event: dict[str, Any]) -> None:
         result = order_manager.submit_bracket_entry(self._trading_client, signal_event)
         if result is None:
@@ -138,6 +154,7 @@ class LoopB:
         order_id = order_event["order_id"]
         self._expected_prices[order_id] = order_event["expected_fill_price"]
         self._bracket_prices[order_id] = (tp_price, sl_stop)
+        self._order_notionals[order_id] = order_event["notional_usd"]
         logger.info("Entry order submitted by Loop B: %s", order_id[:8])
 
     def _execute_time_exit(self, intent: dict[str, Any]) -> None:
@@ -168,12 +185,13 @@ class LoopB:
 
         if side == "buy":
             tp_price, sl_stop = self._bracket_prices.get(order_id, (0.0, 0.0))
+            notional = self._order_notionals.pop(order_id, config.MVP_POSITION_NOTIONAL_USD)
             self._position_tracker.on_entry_fill(
                 symbol=symbol,
                 entry_order_id=order_id,
                 fill_price=fill_price,
                 qty=filled_qty,
-                notional_usd=config.MVP_POSITION_NOTIONAL_USD,
+                notional_usd=notional,
                 stop_price=sl_stop,
                 take_profit=tp_price,
                 filled_at=filled_at,
@@ -240,6 +258,7 @@ class LoopB:
             })
             self._expected_prices.pop(oid, None)
             self._bracket_prices.pop(oid, None)
+            self._order_notionals.pop(oid, None)
 
     def _handle_cancel(self, data: dict[str, Any]) -> None:
         order = data.get("order", {})
@@ -254,6 +273,7 @@ class LoopB:
             })
             self._expected_prices.pop(oid, None)
             self._bracket_prices.pop(oid, None)
+            self._order_notionals.pop(oid, None)
 
     def stop(self) -> None:
         self._stop_event.set()

@@ -74,21 +74,23 @@ def _already_submitted(client: TradingClient, client_order_id: str) -> bool:
     return False
 
 
-def compute_qty(bar_price: float) -> float:
+def compute_qty(bar_price: float) -> int:
     """
     Fixed notional position sizing per plan.
-    MVP_POSITION_NOTIONAL_USD / bar_price, rounded to 2 decimal places.
+    Floor to whole shares — bracket orders require integer qty.
     """
     config.load()
     if bar_price <= 0:
         raise ValueError(f"bar_price must be positive, got {bar_price}")
-    qty = config.MVP_POSITION_NOTIONAL_USD / bar_price
-    return round(qty, 2)
+    return int(config.MVP_POSITION_NOTIONAL_USD / bar_price)
 
 
 def submit_bracket_entry(
     client: TradingClient,
     signal_event: dict[str, Any],
+    notional_usd: float | None = None,
+    is_smoke_test: bool = False,
+    alert_prefix: str = "",
 ) -> tuple[dict[str, Any], float, float] | None:
     """
     Submit a bracket buy order (entry + TP + SL) to Alpaca.
@@ -113,18 +115,20 @@ def submit_bracket_entry(
         logger.error("submit_bracket_entry: bar_close=%s is invalid for %s", bar_close, symbol)
         return None
 
-    client_order_id = make_client_order_id(symbol, "ENTER", bar_timestamp)
+    effective_notional = notional_usd if notional_usd is not None else config.MVP_POSITION_NOTIONAL_USD
+    order_type_tag = "SMOKE" if is_smoke_test else "ENTER"
+    client_order_id = make_client_order_id(symbol, order_type_tag, bar_timestamp)
 
     # Idempotency check
     if _already_submitted(client, client_order_id):
         return None
 
-    qty = compute_qty(bar_close)
-    if qty < 0.01:
+    qty = int(effective_notional / bar_close)
+    if qty < 1:
         logger.warning(
-            "submit_bracket_entry: computed qty=%.4f is suspiciously small for %s @ %.2f. "
-            "Skipping — check MVP_POSITION_NOTIONAL_USD and confirm symbol is fractionable.",
-            qty, symbol, bar_close,
+            "submit_bracket_entry: computed qty=%d is zero for %s @ %.2f (notional=%.2f). "
+            "Increase MVP_POSITION_NOTIONAL_USD above the share price.",
+            qty, symbol, bar_close, effective_notional,
         )
         return None
 
@@ -161,7 +165,8 @@ def submit_bracket_entry(
         side="buy",
         qty=qty,
         limit_price=limit_price,
-        notional=config.MVP_POSITION_NOTIONAL_USD,
+        notional=effective_notional,
+        prefix=alert_prefix,
     )
 
     order_event: dict[str, Any] = {
@@ -173,7 +178,8 @@ def submit_bracket_entry(
         "side": "buy",
         "order_type": "bracket",
         "qty": qty,
-        "notional_usd": config.MVP_POSITION_NOTIONAL_USD,
+        "notional_usd": effective_notional,
+        "is_smoke_test": int(is_smoke_test),
         "limit_price": limit_price,
         "stop_price": sl_stop,
         "submitted_at": submitted_at,

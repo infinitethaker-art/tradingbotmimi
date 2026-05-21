@@ -4,8 +4,9 @@ Uses the Telegram Bot HTTP API directly — no SDK dependency.
 Fails gracefully: a Telegram error never crashes the trading loop.
 """
 import logging
+import threading
 import time
-from typing import Any
+from typing import Any, Callable
 
 import requests
 
@@ -111,8 +112,10 @@ def alert_signal(event: dict) -> bool:
 
 
 def alert_order_submitted(client_order_id: str, symbol: str, side: str,
-                          qty: float, limit_price: float, notional: float) -> bool:
+                          qty: float, limit_price: float, notional: float,
+                          prefix: str = "") -> bool:
     text = (
+        f"{prefix}"
         f"✅ <b>ORDER SUBMITTED</b>\n"
         f"Symbol:  {_esc(symbol)}\n"
         f"Side:    {_esc(side).upper()}\n"
@@ -268,6 +271,63 @@ def send_midday_status(symbol: str, summary: dict, position) -> bool:
         f"Bot running."
     )
     return _send(text)
+
+
+def start_command_listener(
+    on_smoketest: "Callable[[], None]",
+    stop_event: threading.Event,
+) -> None:
+    """
+    Start a background thread that long-polls the Telegram Bot API for incoming commands.
+    Only /smoketest from the configured TELEGRAM_CHAT_ID is acted on.
+    All other senders are silently ignored.
+    Thread exits when stop_event is set.
+    """
+    def _poll() -> None:
+        config.load()
+        token = config.TELEGRAM_BOT_TOKEN
+        chat_id = str(config.TELEGRAM_CHAT_ID)
+        base_url = f"https://api.telegram.org/bot{token}"
+        offset = 0
+
+        logger.info("Telegram command listener started (polling).")
+        while not stop_event.is_set():
+            try:
+                resp = requests.get(
+                    f"{base_url}/getUpdates",
+                    params={"timeout": 30, "offset": offset},
+                    timeout=35,
+                )
+                if not resp.ok:
+                    logger.warning("getUpdates error %d: %s", resp.status_code, resp.text[:100])
+                    stop_event.wait(timeout=5)
+                    continue
+
+                updates = resp.json().get("result", [])
+                for update in updates:
+                    offset = update["update_id"] + 1
+                    message = update.get("message", {})
+                    sender_id = str(message.get("chat", {}).get("id", ""))
+                    text = (message.get("text") or "").strip()
+
+                    if sender_id != chat_id:
+                        continue  # silently ignore unknown senders
+
+                    if text.startswith("/smoketest"):
+                        logger.info("Received /smoketest command from chat_id=%s", sender_id)
+                        threading.Thread(target=on_smoketest, daemon=True).start()
+
+            except requests.RequestException as exc:
+                logger.warning("Command listener request error: %s", exc)
+                stop_event.wait(timeout=5)
+            except Exception as exc:
+                logger.exception("Command listener unexpected error: %s", exc)
+                stop_event.wait(timeout=5)
+
+        logger.info("Telegram command listener stopped.")
+
+    thread = threading.Thread(target=_poll, name="TelegramCommandListener", daemon=True)
+    thread.start()
 
 
 if __name__ == "__main__":

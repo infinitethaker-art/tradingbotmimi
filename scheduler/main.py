@@ -175,6 +175,19 @@ def main() -> None:
         feed=config.ALPACA_DATA_FEED,
     )
 
+    # Start Telegram command listener (remote /smoketest trigger)
+    from tools.smoke_test import smoke_runner
+
+    def _run_smoketest() -> None:
+        threading.Thread(
+            target=smoke_runner.run,
+            args=(loop_b, trading_client),
+            name="SmokeTestRunner",
+            daemon=True,
+        ).start()
+
+    tg.start_command_listener(_run_smoketest, stop_event)
+
     # Boot Loop A — only starts after Loop B is ready
     symbol = config.WATCHLIST[0]
     loop_a = LoopA(risk_state, position_tracker, intent_queue, ws_client=loop_b._ws)
@@ -225,8 +238,9 @@ if __name__ == "__main__":
     while True:
         now = datetime.datetime.now(_ET)
         if market_calendar.is_trading_day(now.date()):
+            open_t = market_calendar.market_open_time(now.date())
             close = market_calendar.market_close_time(now.date())
-            if now < close:
+            if open_t <= now < close:
                 main()
 
         try:

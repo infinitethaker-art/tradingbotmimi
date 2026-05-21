@@ -80,6 +80,10 @@ TRADE_END_OFFSET_MIN: int = 30
 MANUAL_APPROVAL_WINDOW_SEC: int = 120
 AUTO_EXECUTE: bool = False
 
+# ── Smoke test ────────────────────────────────────────────────────────────────
+SMOKE_TEST_MODE: bool = False
+TEST_NOTIONAL_USD: float = 50.0
+
 # ── Signal filters ────────────────────────────────────────────────────────────
 MIN_RELATIVE_VOLUME: float = 1.2
 RSI_LOW: float = 35.0
@@ -119,6 +123,8 @@ def load() -> None:
     global TRADE_END_OFFSET_MIN
     global MANUAL_APPROVAL_WINDOW_SEC
     global AUTO_EXECUTE
+    global SMOKE_TEST_MODE
+    global TEST_NOTIONAL_USD
     global MIN_RELATIVE_VOLUME
     global RSI_LOW
     global RSI_HIGH
@@ -157,6 +163,12 @@ def load() -> None:
 
     MANUAL_APPROVAL_WINDOW_SEC = _int("MANUAL_APPROVAL_WINDOW_SEC", 120)
     AUTO_EXECUTE = _bool("AUTO_EXECUTE", False)
+
+    global SMOKE_TEST_MODE
+    global TEST_NOTIONAL_USD
+    SMOKE_TEST_MODE = _bool("SMOKE_TEST_MODE", False)
+    TEST_NOTIONAL_USD = _float("TEST_NOTIONAL_USD", 50.0)
+
     MIN_RELATIVE_VOLUME = _float("MIN_RELATIVE_VOLUME", 1.2)
     RSI_LOW = _float("RSI_LOW", 35.0)
     RSI_HIGH = _float("RSI_HIGH", 65.0)
@@ -168,6 +180,23 @@ def load() -> None:
     KILL_SWITCH = _bool("KILL_SWITCH", False)
     HEARTBEAT_INTERVAL_SEC = _int("HEARTBEAT_INTERVAL_SEC", 300)
     WATCHDOG_STALE_THRESHOLD_MIN = _int("WATCHDOG_STALE_THRESHOLD_MIN", 15)
+
+
+def smoke_test_guard() -> None:
+    """Hard-fail if not in a fully safe paper environment. Must be called explicitly by smoke runner."""
+    load()
+    if not SMOKE_TEST_MODE:
+        raise RuntimeError("Smoke test requires SMOKE_TEST_MODE=true in env")
+    if not PAPER_TRADING:
+        raise RuntimeError("Smoke test requires PAPER_TRADING=true")
+    if LIVE_CONFIRMED:
+        raise RuntimeError("Smoke test blocked: LIVE_CONFIRMED is set")
+    if DRY_RUN:
+        raise RuntimeError("Smoke test blocked: DRY_RUN=true")
+    if "paper-api.alpaca.markets" not in ALPACA_BASE_URL:
+        raise RuntimeError(f"Smoke test blocked: live URL detected: {ALPACA_BASE_URL}")
+    if TEST_NOTIONAL_USD <= 0 or TEST_NOTIONAL_USD > 100:
+        raise RuntimeError(f"TEST_NOTIONAL_USD must be > 0 and <= 100 (got {TEST_NOTIONAL_USD})")
 
 
 def validate() -> None:

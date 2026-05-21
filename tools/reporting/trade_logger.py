@@ -95,7 +95,8 @@ def init_db() -> None:
                 session_start_equity    REAL,
                 daily_loss_limit_usd    REAL,
                 session_pnl_at_signal   REAL,
-                trading_date_et     TEXT
+                trading_date_et     TEXT,
+                is_smoke_test       INTEGER DEFAULT 0
             )
         """)
         conn.execute("""
@@ -123,6 +124,7 @@ def init_db() -> None:
                 broker_reject_reason    TEXT,
                 pnl_realized            REAL,
                 trading_date_et         TEXT,
+                is_smoke_test           INTEGER DEFAULT 0,
                 FOREIGN KEY (signal_event_id) REFERENCES signal_events(event_id)
             )
         """)
@@ -147,6 +149,8 @@ def init_db() -> None:
             "ALTER TABLE signal_events ADD COLUMN trading_date_et TEXT",
             "ALTER TABLE order_events ADD COLUMN trading_date_et TEXT",
             "ALTER TABLE signal_events ADD COLUMN relative_volume_ok INTEGER",
+            "ALTER TABLE signal_events ADD COLUMN is_smoke_test INTEGER DEFAULT 0",
+            "ALTER TABLE order_events ADD COLUMN is_smoke_test INTEGER DEFAULT 0",
         ):
             try:
                 conn.execute(ddl)
@@ -168,6 +172,7 @@ def log_signal(event: dict[str, Any]) -> None:
     _validate(event, _SIGNAL_REQUIRED, "SignalEvent")
     row = dict(event)
     row["trading_date_et"] = _trading_date_et(event["timestamp"])
+    row.setdefault("is_smoke_test", 0)
     with _conn() as conn:
         cursor = conn.execute(
             """
@@ -179,7 +184,7 @@ def log_signal(event: dict[str, Any]) -> None:
                 iex_bid, iex_ask, iex_spread_pct,
                 market_regime, signal_latency_ms,
                 session_start_equity, daily_loss_limit_usd, session_pnl_at_signal,
-                trading_date_et
+                trading_date_et, is_smoke_test
             ) VALUES (
                 :event_id, :timestamp, :symbol, :data_feed, :session_type,
                 :bar_timestamp, :signal_type, :disposition, :rejection_reason,
@@ -188,7 +193,7 @@ def log_signal(event: dict[str, Any]) -> None:
                 :iex_bid, :iex_ask, :iex_spread_pct,
                 :market_regime, :signal_latency_ms,
                 :session_start_equity, :daily_loss_limit_usd, :session_pnl_at_signal,
-                :trading_date_et
+                :trading_date_et, :is_smoke_test
             )
             """,
             row,
@@ -203,10 +208,21 @@ def log_order(event: dict[str, Any]) -> None:
     _validate(event, _ORDER_REQUIRED, "OrderEvent")
     row = dict(event)
     row["trading_date_et"] = _trading_date_et(event.get("submitted_at") or event.get("timestamp", ""))
+    row.setdefault("is_smoke_test", 0)
     with _conn() as conn:
         cursor = conn.execute(
             """
-            INSERT OR IGNORE INTO order_events VALUES (
+            INSERT OR IGNORE INTO order_events (
+                order_id, client_order_id, signal_event_id, symbol, data_feed,
+                side, order_type, qty, notional_usd,
+                limit_price, stop_price,
+                submitted_at, filled_at,
+                filled_qty, partial_fill,
+                expected_fill_price, actual_fill_price,
+                slippage_pct, fill_latency_ms,
+                status, broker_reject_reason, pnl_realized,
+                trading_date_et, is_smoke_test
+            ) VALUES (
                 :order_id, :client_order_id, :signal_event_id, :symbol, :data_feed,
                 :side, :order_type, :qty, :notional_usd,
                 :limit_price, :stop_price,
@@ -215,7 +231,7 @@ def log_order(event: dict[str, Any]) -> None:
                 :expected_fill_price, :actual_fill_price,
                 :slippage_pct, :fill_latency_ms,
                 :status, :broker_reject_reason, :pnl_realized,
-                :trading_date_et
+                :trading_date_et, :is_smoke_test
             )
             """,
             row,
@@ -264,6 +280,7 @@ def daily_summary(date: str | None = None) -> dict[str, Any]:
                 COALESCE(SUM(CASE WHEN disposition='REJECTED' THEN 1 ELSE 0 END), 0) as rejected
             FROM signal_events
             WHERE trading_date_et = ?
+              AND (is_smoke_test IS NULL OR is_smoke_test = 0)
             """,
             (date,),
         ).fetchone()
@@ -273,6 +290,7 @@ def daily_summary(date: str | None = None) -> dict[str, Any]:
                    COUNT(*) as fills
             FROM order_events
             WHERE trading_date_et = ? AND status='filled'
+              AND (is_smoke_test IS NULL OR is_smoke_test = 0)
             """,
             (date,),
         ).fetchone()
