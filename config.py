@@ -195,8 +195,8 @@ def smoke_test_guard() -> None:
         raise RuntimeError("Smoke test blocked: DRY_RUN=true")
     if "paper-api.alpaca.markets" not in ALPACA_BASE_URL:
         raise RuntimeError(f"Smoke test blocked: live URL detected: {ALPACA_BASE_URL}")
-    if TEST_NOTIONAL_USD <= 0 or TEST_NOTIONAL_USD > 100:
-        raise RuntimeError(f"TEST_NOTIONAL_USD must be > 0 and <= 100 (got {TEST_NOTIONAL_USD})")
+    if TEST_NOTIONAL_USD <= 0 or TEST_NOTIONAL_USD > 2000:
+        raise RuntimeError(f"TEST_NOTIONAL_USD must be > 0 and <= 2000 (got {TEST_NOTIONAL_USD})")
 
 
 def validate() -> None:
