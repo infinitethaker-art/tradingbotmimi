@@ -17,6 +17,7 @@ from alpaca.trading.client import TradingClient
 from alpaca.trading.enums import OrderClass, OrderSide, OrderType, TimeInForce
 from alpaca.trading.requests import (
     LimitOrderRequest,
+    MarketOrderRequest,
     TakeProfitRequest,
     StopLossRequest,
 )
@@ -208,6 +209,26 @@ def cancel_open_bracket(client: TradingClient, order_id: str) -> bool:
         return True
     except Exception as exc:
         logger.error("Failed to cancel order %s: %s", order_id[:8], exc)
+        return False
+
+
+def submit_market_exit(client: TradingClient, symbol: str, qty: float) -> bool:
+    """Submit a market sell to close an open position (time-based exit)."""
+    try:
+        client.submit_order(
+            MarketOrderRequest(
+                symbol=symbol,
+                qty=int(qty),
+                side=OrderSide.SELL,
+                time_in_force=TimeInForce.DAY,
+            )
+        )
+        logger.info("Time exit: market sell submitted for %s qty=%d", symbol, int(qty))
+        tg.send_raw(f"⏱ <b>TIME EXIT</b> {symbol} — market sell {int(qty)} share(s) submitted.")
+        return True
+    except Exception as exc:
+        logger.error("Time exit: market sell failed for %s: %s", symbol, exc)
+        tg.send_raw(f"⚠️ <b>TIME EXIT FAILED</b> for {symbol}: {exc}")
         return False
 
 

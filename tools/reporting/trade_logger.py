@@ -256,7 +256,7 @@ def update_order_fill(order_id: str, fill_data: dict[str, Any]) -> None:
             {"order_id": order_id, **fill_data},
         )
         if cursor.rowcount == 0:
-            logger.warning("update_order_fill: no row updated for order_id=%s", order_id[:8] if order_id else "?")
+            logger.debug("update_order_fill: no row for order_id=%s (bracket child order — expected)", order_id[:8] if order_id else "?")
 
 
 def get_open_signal_ids() -> list[str]:
