@@ -145,8 +145,8 @@ def main() -> None:
     risk_state.set_daytrade_count(daytrade_count)
     position_tracker = PositionTracker()
 
-    # Shared queue for Loop A -> Loop B intent handoff (bounded to 1)
-    intent_queue: queue.Queue = queue.Queue(maxsize=1)
+    # Shared queue for Loop A -> Loop B intent handoff (bounded to MAX_OPEN_POSITIONS)
+    intent_queue: queue.Queue = queue.Queue(maxsize=config.MAX_OPEN_POSITIONS)
 
     # Boot Loop B in a thread (handles reconciliation + WebSocket)
     loop_b = LoopB(risk_state, position_tracker, intent_queue)
@@ -188,14 +188,15 @@ def main() -> None:
 
     tg.start_command_listener(_run_smoketest, stop_event)
 
-    # Boot Loop A — only starts after Loop B is ready
-    symbol = config.WATCHLIST[0]
-    loop_a = LoopA(risk_state, position_tracker, intent_queue, ws_client=loop_b._ws)
-    loop_a_thread = threading.Thread(
-        target=loop_a.run, args=(symbol, stop_event), name="LoopA", daemon=True
-    )
-    loop_a_thread.start()
+    # Boot one Loop A thread per symbol — only starts after Loop B is ready
+    for sym in config.WATCHLIST:
+        la = LoopA(risk_state, position_tracker, intent_queue, ws_client=loop_b._ws)
+        threading.Thread(
+            target=la.run, args=(sym, stop_event), name=f"LoopA-{sym}", daemon=True
+        ).start()
 
+    # Midday monitor sends summary keyed to first symbol (representative)
+    symbol = config.WATCHLIST[0]
     midday_thread = threading.Thread(
         target=_midday_monitor,
         args=(symbol, position_tracker, stop_event),
@@ -204,8 +205,8 @@ def main() -> None:
     )
     midday_thread.start()
 
-    logger.info("Bot running. Symbol=%s Feed=%s Mode=%s",
-                symbol, config.ALPACA_DATA_FEED,
+    logger.info("Bot running. Symbols=%s Feed=%s Mode=%s",
+                ",".join(config.WATCHLIST), config.ALPACA_DATA_FEED,
                 "PAPER" if config.PAPER_TRADING else "LIVE")
 
     # Block main thread until shutdown

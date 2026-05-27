@@ -138,7 +138,16 @@ def evaluate(
     macd_cross = _crossover(prev_hist, curr_hist)
     rsi_ok = rsi is not None and config.RSI_LOW <= rsi <= config.RSI_HIGH
 
+    # Momentum continuation: histogram already positive and accelerating
+    macd_momentum = (
+        prev_hist is not None
+        and prev_hist > 0
+        and curr_hist > prev_hist * 1.05
+    )
+
     if macd_cross and rsi_ok and volume_ok:
+        signal_type = "ENTER_LONG"
+    elif macd_momentum and rsi_ok and volume_ok:
         signal_type = "ENTER_LONG"
     elif _crossunder(prev_hist, curr_hist):
         signal_type = "EXIT_LONG"

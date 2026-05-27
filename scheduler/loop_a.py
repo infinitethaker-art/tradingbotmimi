@@ -163,6 +163,9 @@ class LoopA:
             account = trading_client.get_account()
             current_equity = float(account.equity)
 
+            # Sync open position count from tracker before risk check (thread-safe for multi-symbol)
+            self._risk_state.set_open_positions(self._position_tracker.open_count())
+
             result = risk_checks.check_entry(signal_event, self._risk_state, current_equity)
             risk_checks.apply_result(signal_event, result)
 
