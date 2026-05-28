@@ -165,7 +165,12 @@ class LoopB:
             return
         logger.info("Time exit: cancelling bracket for %s (entry_order=%s).", symbol, pos.entry_order_id[:8])
         order_manager.cancel_open_bracket(self._trading_client, pos.entry_order_id)
-        order_manager.submit_market_exit(self._trading_client, symbol, pos.qty)
+        # Alpaca processes cancels asynchronously — retry with backoff until shares are available
+        for attempt in range(1, 4):
+            time.sleep(attempt)
+            if order_manager.submit_market_exit(self._trading_client, symbol, pos.qty):
+                return
+            logger.warning("Time exit attempt %d/3 failed for %s — retrying.", attempt, symbol)
 
     # ── WebSocket fill handlers ────────────────────────────────────────────────
 

@@ -156,6 +156,15 @@ class LoopA:
             return
 
         if signal_event["signal_type"] == "ENTER_LONG":
+            # Block re-entry on the same symbol while a position is already open.
+            # risk_checks only gates on total count — this is the per-symbol guard.
+            if self._position_tracker.has_open(symbol):
+                signal_event["disposition"] = "REJECTED"
+                signal_event["rejection_reason"] = "SYMBOL_ALREADY_OPEN"
+                trade_logger.log_signal(signal_event)
+                logger.info("ENTER_LONG %s rejected: position already open.", symbol)
+                return
+
             from alpaca.trading.client import TradingClient
             trading_client = TradingClient(
                 config.ALPACA_API_KEY, config.ALPACA_SECRET_KEY, paper=config.PAPER_TRADING
@@ -218,7 +227,10 @@ class LoopA:
                         self._risk_state.daily_loss_limit_usd,
                     )
 
-        # Always log the final signal event
+        # Stamp any scan that never reached risk checks so reports show NO_SIGNAL, not PENDING
+        if signal_event.get("disposition") == "PENDING":
+            signal_event["disposition"] = "NO_SIGNAL"
+
         trade_logger.log_signal(signal_event)
 
     def _check_time_exit(self, symbol: str) -> None:

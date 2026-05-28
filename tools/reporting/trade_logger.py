@@ -275,9 +275,10 @@ def daily_summary(date: str | None = None) -> dict[str, Any]:
         row = conn.execute(
             """
             SELECT
-                COUNT(*) as total_signals,
+                COUNT(*) as total_scans,
+                COALESCE(SUM(CASE WHEN signal_type='ENTER_LONG' THEN 1 ELSE 0 END), 0) as total_signals,
                 COALESCE(SUM(CASE WHEN disposition='SUBMITTED' THEN 1 ELSE 0 END), 0) as taken,
-                COALESCE(SUM(CASE WHEN disposition='REJECTED' THEN 1 ELSE 0 END), 0) as rejected
+                COALESCE(SUM(CASE WHEN disposition='REJECTED' AND signal_type='ENTER_LONG' THEN 1 ELSE 0 END), 0) as rejected
             FROM signal_events
             WHERE trading_date_et = ?
               AND (is_smoke_test IS NULL OR is_smoke_test = 0)
@@ -296,6 +297,7 @@ def daily_summary(date: str | None = None) -> dict[str, Any]:
         ).fetchone()
     return {
         "date": date,
+        "total_scans": row["total_scans"],
         "total_signals": row["total_signals"],
         "taken": row["taken"],
         "rejected": row["rejected"],

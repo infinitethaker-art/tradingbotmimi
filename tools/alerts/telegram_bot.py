@@ -238,6 +238,7 @@ def daily_report(summary: dict) -> bool:
     sign = "+" if pnl >= 0 else ""
     text = (
         f"📊 <b>DAILY REPORT — {_esc(summary.get('date'))}</b>\n"
+        f"Scans:     {summary.get('total_scans', 0)}\n"
         f"Signals:   {summary.get('total_signals', 0)}\n"
         f"Taken:     {summary.get('taken', 0)}\n"
         f"Rejected:  {summary.get('rejected', 0)}\n"
@@ -248,7 +249,7 @@ def daily_report(summary: dict) -> bool:
 
 
 def send_midday_status(symbol: str, summary: dict, position) -> bool:
-    scans = summary.get("total_signals", 0)
+    scans = summary.get("total_scans", 0)
     taken = summary.get("taken", 0)
     rejected = summary.get("rejected", 0)
     pnl = summary.get("total_pnl", 0.0)
