@@ -215,7 +215,7 @@ def cancel_open_bracket(client: TradingClient, order_id: str) -> bool:
 def submit_market_exit(client: TradingClient, symbol: str, qty: float) -> bool:
     """Submit a market sell to close an open position (time-based exit)."""
     try:
-        client.submit_order(
+        order = client.submit_order(
             MarketOrderRequest(
                 symbol=symbol,
                 qty=int(qty),
@@ -225,6 +225,38 @@ def submit_market_exit(client: TradingClient, symbol: str, qty: float) -> bool:
         )
         logger.info("Time exit: market sell submitted for %s qty=%d", symbol, int(qty))
         tg.send_raw(f"⏱ <b>TIME EXIT</b> {symbol} — market sell {int(qty)} share(s) submitted.")
+
+        # Log the order so fill events have a row to update PnL against
+        submitted_at = (
+            order.submitted_at.isoformat()
+            if order.submitted_at
+            else datetime.datetime.now(_UTC).isoformat()
+        )
+        config.load()
+        trade_logger.log_order({
+            "order_id": str(order.id),
+            "client_order_id": str(order.client_order_id or order.id),
+            "signal_event_id": None,
+            "symbol": symbol,
+            "data_feed": config.ALPACA_DATA_FEED,
+            "side": "sell",
+            "order_type": "market",
+            "qty": int(qty),
+            "notional_usd": 0.0,
+            "limit_price": None,
+            "stop_price": None,
+            "submitted_at": submitted_at,
+            "filled_at": None,
+            "filled_qty": 0,
+            "partial_fill": 0,
+            "expected_fill_price": None,
+            "actual_fill_price": None,
+            "slippage_pct": None,
+            "fill_latency_ms": None,
+            "status": "submitted",
+            "broker_reject_reason": None,
+            "pnl_realized": None,
+        })
         return True
     except Exception as exc:
         logger.error("Time exit: market sell failed for %s: %s", symbol, exc)
