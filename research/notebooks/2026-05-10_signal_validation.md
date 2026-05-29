@@ -1,5 +1,7 @@
 # Signal Validation Study — 2026-05-10
 
+> ⚠️ **SUPERSEDED 2026-05-29.** This note labels `vol=1.2 / RSI≤65` as the live config ("[current]") and recommends "deploy as-is." Production actually runs **`vol=1.1 / RSI≤70`** (confirmed via live Railway env, 2026-05-29). A fresh 13-month walk-forward validated 1.1/70 as acceptable (Sharpe ≈ tied with 1.2/65). See [`2026-05-29_parameter_validation.md`](2026-05-29_parameter_validation.md). Numbers below are retained for history.
+
 ## Question
 Has the strategy been broken for 2 weeks, or did market conditions explain zero trades?
 

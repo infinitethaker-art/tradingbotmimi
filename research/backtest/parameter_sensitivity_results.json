@@ -1,0 +1,4674 @@
+{
+  "run_date": "2026-05-29T23:17:09.788858",
+  "symbol": "SPY",
+  "feed": "iex",
+  "history_months": 13,
+  "warmup_months": 3,
+  "oos_folds": [
+    "2025-07",
+    "2025-08",
+    "2025-09",
+    "2025-10",
+    "2025-11",
+    "2025-12",
+    "2026-01",
+    "2026-02",
+    "2026-03",
+    "2026-04",
+    "2026-05"
+  ],
+  "oos_trading_days": 230.0,
+  "fixed_params": {
+    "MACD_FAST": 12,
+    "MACD_SLOW": 26,
+    "MACD_SIGNAL_WIN": 9,
+    "RSI_PERIOD": 14,
+    "RSI_LOW": 35.0,
+    "STOP_LOSS_PCT": 0.02,
+    "TAKE_PROFIT_PCT": 0.04,
+    "REL_VOL_WINDOW": 20
+  },
+  "configs": [
+    {
+      "min_rel_vol": 0.8,
+      "rsi_high": 65.0,
+      "tags": [
+        "vol_sweep"
+      ],
+      "overall": {
+        "base_case": {
+          "n_trades": 132,
+          "win_rate_pct": 40.9,
+          "avg_ret_pct": -0.005,
+          "median_ret_pct": -0.007,
+          "avg_R": -0.002,
+          "median_R": -0.003,
+          "total_ret_pct": -0.71,
+          "max_dd_pct": -4.72,
+          "sharpe": -0.013,
+          "avg_trades_per_week": null,
+          "exit_reasons": {
+            "MACD_DOWN": 58,
+            "STOP_LOSS": 0,
+            "TAKE_PROFIT": 0,
+            "EOD": 74
+          }
+        },
+        "sensitivity_case": {
+          "n_trades": 121,
+          "win_rate_pct": 44.6,
+          "avg_ret_pct": -0.006,
+          "median_ret_pct": -0.04,
+          "avg_R": -0.003,
+          "median_R": -0.02,
+          "total_ret_pct": -0.85,
+          "max_dd_pct": -3.75,
+          "sharpe": -0.017,
+          "avg_trades_per_week": null,
+          "exit_reasons": {
+            "MACD_DOWN": 58,
+            "STOP_LOSS": 0,
+            "TAKE_PROFIT": 0,
+            "EOD": 63
+          }
+        }
+      },
+      "oos_agg": {
+        "base_case": {
+          "n_trades": 109,
+          "win_rate_pct": 43.1,
+          "avg_ret_pct": 0.033,
+          "median_ret_pct": 0.0,
+          "avg_R": 0.016,
+          "median_R": 0.0,
+          "total_ret_pct": 3.55,
+          "max_dd_pct": -2.49,
+          "sharpe": 0.094,
+          "avg_trades_per_week": 2.37,
+          "exit_reasons": {
+            "MACD_DOWN": 44,
+            "STOP_LOSS": 0,
+            "TAKE_PROFIT": 0,
+            "EOD": 65
+          }
+        },
+        "sensitivity_case": {
+          "n_trades": 100,
+          "win_rate_pct": 47.0,
+          "avg_ret_pct": 0.034,
+          "median_ret_pct": -0.022,
+          "avg_R": 0.017,
+          "median_R": -0.011,
+          "total_ret_pct": 3.41,
+          "max_dd_pct": -2.45,
+          "sharpe": 0.095,
+          "avg_trades_per_week": 2.17,
+          "exit_reasons": {
+            "MACD_DOWN": 44,
+            "STOP_LOSS": 0,
+            "TAKE_PROFIT": 0,
+            "EOD": 56
+          }
+        }
+      },
+      "oos_folds": [
+        {
+          "fold": "2025-07",
+          "base_case": {
+            "n_trades": 6,
+            "win_rate_pct": 33.3,
+            "avg_ret_pct": 0.01,
+            "median_ret_pct": 0.0,
+            "avg_R": 0.005,
+            "median_R": 0.0,
+            "total_ret_pct": 0.06,
+            "max_dd_pct": -0.32,
+            "sharpe": 0.061,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 4
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 4,
+            "win_rate_pct": 50.0,
+            "avg_ret_pct": 0.012,
+            "median_ret_pct": 0.011,
+            "avg_R": 0.006,
+            "median_R": 0.005,
+            "total_ret_pct": 0.05,
+            "max_dd_pct": -0.33,
+            "sharpe": 0.057,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 2
+            }
+          }
+        },
+        {
+          "fold": "2025-08",
+          "base_case": {
+            "n_trades": 6,
+            "win_rate_pct": 33.3,
+            "avg_ret_pct": -0.072,
+            "median_ret_pct": -0.02,
+            "avg_R": -0.036,
+            "median_R": -0.01,
+            "total_ret_pct": -0.43,
+            "max_dd_pct": -0.4,
+            "sharpe": -0.361,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 4
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 5,
+            "win_rate_pct": 40.0,
+            "avg_ret_pct": -0.081,
+            "median_ret_pct": -0.041,
+            "avg_R": -0.041,
+            "median_R": -0.02,
+            "total_ret_pct": -0.41,
+            "max_dd_pct": -0.39,
+            "sharpe": -0.376,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          }
+        },
+        {
+          "fold": "2025-09",
+          "base_case": {
+            "n_trades": 11,
+            "win_rate_pct": 54.5,
+            "avg_ret_pct": 0.062,
+            "median_ret_pct": 0.047,
+            "avg_R": 0.031,
+            "median_R": 0.024,
+            "total_ret_pct": 0.68,
+            "max_dd_pct": -0.9,
+            "sharpe": 0.2,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 4,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 7
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 10,
+            "win_rate_pct": 60.0,
+            "avg_ret_pct": 0.055,
+            "median_ret_pct": 0.061,
+            "avg_R": 0.028,
+            "median_R": 0.031,
+            "total_ret_pct": 0.55,
+            "max_dd_pct": -1.02,
+            "sharpe": 0.163,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 4,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 6
+            }
+          }
+        },
+        {
+          "fold": "2025-10",
+          "base_case": {
+            "n_trades": 7,
+            "win_rate_pct": 57.1,
+            "avg_ret_pct": 0.105,
+            "median_ret_pct": 0.037,
+            "avg_R": 0.053,
+            "median_R": 0.019,
+            "total_ret_pct": 0.74,
+            "max_dd_pct": -0.09,
+            "sharpe": 0.494,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 1,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 6
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 7,
+            "win_rate_pct": 57.1,
+            "avg_ret_pct": 0.105,
+            "median_ret_pct": 0.033,
+            "avg_R": 0.053,
+            "median_R": 0.016,
+            "total_ret_pct": 0.74,
+            "max_dd_pct": -0.1,
+            "sharpe": 0.485,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 1,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 6
+            }
+          }
+        },
+        {
+          "fold": "2025-11",
+          "base_case": {
+            "n_trades": 10,
+            "win_rate_pct": 20.0,
+            "avg_ret_pct": 0.062,
+            "median_ret_pct": -0.077,
+            "avg_R": 0.031,
+            "median_R": -0.038,
+            "total_ret_pct": 0.61,
+            "max_dd_pct": -0.43,
+            "sharpe": 0.131,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 5,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 5
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 9,
+            "win_rate_pct": 22.2,
+            "avg_ret_pct": 0.07,
+            "median_ret_pct": -0.108,
+            "avg_R": 0.035,
+            "median_R": -0.054,
+            "total_ret_pct": 0.62,
+            "max_dd_pct": -0.43,
+            "sharpe": 0.141,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 5,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 4
+            }
+          }
+        },
+        {
+          "fold": "2025-12",
+          "base_case": {
+            "n_trades": 13,
+            "win_rate_pct": 38.5,
+            "avg_ret_pct": 0.002,
+            "median_ret_pct": -0.046,
+            "avg_R": 0.001,
+            "median_R": -0.023,
+            "total_ret_pct": 0.03,
+            "max_dd_pct": -0.44,
+            "sharpe": 0.012,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 5,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 8
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 13,
+            "win_rate_pct": 38.5,
+            "avg_ret_pct": -0.0,
+            "median_ret_pct": -0.052,
+            "avg_R": -0.0,
+            "median_R": -0.026,
+            "total_ret_pct": -0.0,
+            "max_dd_pct": -0.43,
+            "sharpe": -0.0,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 5,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 8
+            }
+          }
+        },
+        {
+          "fold": "2026-01",
+          "base_case": {
+            "n_trades": 14,
+            "win_rate_pct": 50.0,
+            "avg_ret_pct": 0.044,
+            "median_ret_pct": 0.013,
+            "avg_R": 0.022,
+            "median_R": 0.006,
+            "total_ret_pct": 0.61,
+            "max_dd_pct": -0.54,
+            "sharpe": 0.189,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 6,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 8
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 13,
+            "win_rate_pct": 53.8,
+            "avg_ret_pct": 0.047,
+            "median_ret_pct": 0.025,
+            "avg_R": 0.024,
+            "median_R": 0.012,
+            "total_ret_pct": 0.61,
+            "max_dd_pct": -0.54,
+            "sharpe": 0.195,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 6,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 7
+            }
+          }
+        },
+        {
+          "fold": "2026-02",
+          "base_case": {
+            "n_trades": 12,
+            "win_rate_pct": 41.7,
+            "avg_ret_pct": -0.124,
+            "median_ret_pct": -0.11,
+            "avg_R": -0.062,
+            "median_R": -0.055,
+            "total_ret_pct": -1.49,
+            "max_dd_pct": -1.69,
+            "sharpe": -0.468,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 5,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 7
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 12,
+            "win_rate_pct": 41.7,
+            "avg_ret_pct": -0.12,
+            "median_ret_pct": -0.104,
+            "avg_R": -0.06,
+            "median_R": -0.052,
+            "total_ret_pct": -1.43,
+            "max_dd_pct": -1.65,
+            "sharpe": -0.454,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 5,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 7
+            }
+          }
+        },
+        {
+          "fold": "2026-03",
+          "base_case": {
+            "n_trades": 11,
+            "win_rate_pct": 54.5,
+            "avg_ret_pct": 0.094,
+            "median_ret_pct": 0.064,
+            "avg_R": 0.047,
+            "median_R": 0.032,
+            "total_ret_pct": 1.01,
+            "max_dd_pct": -2.21,
+            "sharpe": 0.142,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 6,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 5
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 11,
+            "win_rate_pct": 54.5,
+            "avg_ret_pct": 0.092,
+            "median_ret_pct": 0.047,
+            "avg_R": 0.046,
+            "median_R": 0.023,
+            "total_ret_pct": 0.99,
+            "max_dd_pct": -2.19,
+            "sharpe": 0.141,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 6,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 5
+            }
+          }
+        },
+        {
+          "fold": "2026-04",
+          "base_case": {
+            "n_trades": 11,
+            "win_rate_pct": 36.4,
+            "avg_ret_pct": 0.091,
+            "median_ret_pct": 0.0,
+            "avg_R": 0.046,
+            "median_R": 0.0,
+            "total_ret_pct": 1.0,
+            "max_dd_pct": -0.8,
+            "sharpe": 0.212,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 4,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 7
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 9,
+            "win_rate_pct": 44.4,
+            "avg_ret_pct": 0.108,
+            "median_ret_pct": -0.041,
+            "avg_R": 0.054,
+            "median_R": -0.021,
+            "total_ret_pct": 0.97,
+            "max_dd_pct": -0.8,
+            "sharpe": 0.228,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 4,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 5
+            }
+          }
+        },
+        {
+          "fold": "2026-05",
+          "base_case": {
+            "n_trades": 8,
+            "win_rate_pct": 50.0,
+            "avg_ret_pct": 0.088,
+            "median_ret_pct": 0.119,
+            "avg_R": 0.044,
+            "median_R": 0.059,
+            "total_ret_pct": 0.7,
+            "max_dd_pct": -0.43,
+            "sharpe": 0.266,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 4,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 4
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 7,
+            "win_rate_pct": 57.1,
+            "avg_ret_pct": 0.1,
+            "median_ret_pct": 0.228,
+            "avg_R": 0.05,
+            "median_R": 0.114,
+            "total_ret_pct": 0.7,
+            "max_dd_pct": -0.43,
+            "sharpe": 0.282,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 4,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          }
+        }
+      ],
+      "fold_consistency_base": "9/11"
+    },
+    {
+      "min_rel_vol": 0.9,
+      "rsi_high": 65.0,
+      "tags": [
+        "vol_sweep"
+      ],
+      "overall": {
+        "base_case": {
+          "n_trades": 112,
+          "win_rate_pct": 42.0,
+          "avg_ret_pct": -0.013,
+          "median_ret_pct": 0.0,
+          "avg_R": -0.007,
+          "median_R": 0.0,
+          "total_ret_pct": -1.51,
+          "max_dd_pct": -3.95,
+          "sharpe": -0.038,
+          "avg_trades_per_week": null,
+          "exit_reasons": {
+            "MACD_DOWN": 47,
+            "STOP_LOSS": 0,
+            "TAKE_PROFIT": 0,
+            "EOD": 65
+          }
+        },
+        "sensitivity_case": {
+          "n_trades": 101,
+          "win_rate_pct": 46.5,
+          "avg_ret_pct": -0.015,
+          "median_ret_pct": -0.025,
+          "avg_R": -0.007,
+          "median_R": -0.012,
+          "total_ret_pct": -1.56,
+          "max_dd_pct": -2.88,
+          "sharpe": -0.042,
+          "avg_trades_per_week": null,
+          "exit_reasons": {
+            "MACD_DOWN": 47,
+            "STOP_LOSS": 0,
+            "TAKE_PROFIT": 0,
+            "EOD": 54
+          }
+        }
+      },
+      "oos_agg": {
+        "base_case": {
+          "n_trades": 93,
+          "win_rate_pct": 45.2,
+          "avg_ret_pct": 0.026,
+          "median_ret_pct": 0.0,
+          "avg_R": 0.013,
+          "median_R": 0.0,
+          "total_ret_pct": 2.37,
+          "max_dd_pct": -2.49,
+          "sharpe": 0.085,
+          "avg_trades_per_week": 2.02,
+          "exit_reasons": {
+            "MACD_DOWN": 36,
+            "STOP_LOSS": 0,
+            "TAKE_PROFIT": 0,
+            "EOD": 57
+          }
+        },
+        "sensitivity_case": {
+          "n_trades": 84,
+          "win_rate_pct": 50.0,
+          "avg_ret_pct": 0.027,
+          "median_ret_pct": 0.009,
+          "avg_R": 0.014,
+          "median_R": 0.005,
+          "total_ret_pct": 2.29,
+          "max_dd_pct": -2.45,
+          "sharpe": 0.086,
+          "avg_trades_per_week": 1.83,
+          "exit_reasons": {
+            "MACD_DOWN": 36,
+            "STOP_LOSS": 0,
+            "TAKE_PROFIT": 0,
+            "EOD": 48
+          }
+        }
+      },
+      "oos_folds": [
+        {
+          "fold": "2025-07",
+          "base_case": {
+            "n_trades": 5,
+            "win_rate_pct": 40.0,
+            "avg_ret_pct": 0.034,
+            "median_ret_pct": 0.0,
+            "avg_R": 0.017,
+            "median_R": 0.0,
+            "total_ret_pct": 0.17,
+            "max_dd_pct": -0.2,
+            "sharpe": 0.206,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 3,
+            "win_rate_pct": 66.7,
+            "avg_ret_pct": 0.056,
+            "median_ret_pct": 0.14,
+            "avg_R": 0.028,
+            "median_R": 0.07,
+            "total_ret_pct": 0.17,
+            "max_dd_pct": -0.21,
+            "sharpe": 0.235,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 1
+            }
+          }
+        },
+        {
+          "fold": "2025-08",
+          "base_case": {
+            "n_trades": 5,
+            "win_rate_pct": 40.0,
+            "avg_ret_pct": -0.013,
+            "median_ret_pct": 0.0,
+            "avg_R": -0.007,
+            "median_R": 0.0,
+            "total_ret_pct": -0.07,
+            "max_dd_pct": -0.04,
+            "sharpe": -0.087,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 1,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 4
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 4,
+            "win_rate_pct": 50.0,
+            "avg_ret_pct": -0.014,
+            "median_ret_pct": 0.01,
+            "avg_R": -0.007,
+            "median_R": 0.005,
+            "total_ret_pct": -0.06,
+            "max_dd_pct": -0.04,
+            "sharpe": -0.077,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 1,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          }
+        },
+        {
+          "fold": "2025-09",
+          "base_case": {
+            "n_trades": 10,
+            "win_rate_pct": 50.0,
+            "avg_ret_pct": 0.027,
+            "median_ret_pct": 0.023,
+            "avg_R": 0.013,
+            "median_R": 0.012,
+            "total_ret_pct": 0.27,
+            "max_dd_pct": -0.9,
+            "sharpe": 0.089,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 3,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 7
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 9,
+            "win_rate_pct": 55.6,
+            "avg_ret_pct": 0.015,
+            "median_ret_pct": 0.043,
+            "avg_R": 0.008,
+            "median_R": 0.022,
+            "total_ret_pct": 0.13,
+            "max_dd_pct": -1.02,
+            "sharpe": 0.046,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 3,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 6
+            }
+          }
+        },
+        {
+          "fold": "2025-10",
+          "base_case": {
+            "n_trades": 7,
+            "win_rate_pct": 57.1,
+            "avg_ret_pct": 0.105,
+            "median_ret_pct": 0.037,
+            "avg_R": 0.053,
+            "median_R": 0.019,
+            "total_ret_pct": 0.74,
+            "max_dd_pct": -0.09,
+            "sharpe": 0.494,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 1,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 6
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 7,
+            "win_rate_pct": 57.1,
+            "avg_ret_pct": 0.105,
+            "median_ret_pct": 0.033,
+            "avg_R": 0.053,
+            "median_R": 0.016,
+            "total_ret_pct": 0.74,
+            "max_dd_pct": -0.1,
+            "sharpe": 0.485,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 1,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 6
+            }
+          }
+        },
+        {
+          "fold": "2025-11",
+          "base_case": {
+            "n_trades": 9,
+            "win_rate_pct": 11.1,
+            "avg_ret_pct": -0.048,
+            "median_ret_pct": -0.113,
+            "avg_R": -0.024,
+            "median_R": -0.057,
+            "total_ret_pct": -0.44,
+            "max_dd_pct": -0.43,
+            "sharpe": -0.141,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 5,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 4
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 8,
+            "win_rate_pct": 12.5,
+            "avg_ret_pct": -0.052,
+            "median_ret_pct": -0.11,
+            "avg_R": -0.026,
+            "median_R": -0.055,
+            "total_ret_pct": -0.42,
+            "max_dd_pct": -0.43,
+            "sharpe": -0.143,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 5,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          }
+        },
+        {
+          "fold": "2025-12",
+          "base_case": {
+            "n_trades": 9,
+            "win_rate_pct": 55.6,
+            "avg_ret_pct": 0.068,
+            "median_ret_pct": 0.098,
+            "avg_R": 0.034,
+            "median_R": 0.049,
+            "total_ret_pct": 0.61,
+            "max_dd_pct": -0.26,
+            "sharpe": 0.321,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 3,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 6
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 9,
+            "win_rate_pct": 55.6,
+            "avg_ret_pct": 0.065,
+            "median_ret_pct": 0.094,
+            "avg_R": 0.032,
+            "median_R": 0.047,
+            "total_ret_pct": 0.58,
+            "max_dd_pct": -0.26,
+            "sharpe": 0.313,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 3,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 6
+            }
+          }
+        },
+        {
+          "fold": "2026-01",
+          "base_case": {
+            "n_trades": 12,
+            "win_rate_pct": 50.0,
+            "avg_ret_pct": 0.035,
+            "median_ret_pct": 0.013,
+            "avg_R": 0.018,
+            "median_R": 0.006,
+            "total_ret_pct": 0.42,
+            "max_dd_pct": -0.54,
+            "sharpe": 0.173,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 5,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 7
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 11,
+            "win_rate_pct": 54.5,
+            "avg_ret_pct": 0.038,
+            "median_ret_pct": 0.025,
+            "avg_R": 0.019,
+            "median_R": 0.012,
+            "total_ret_pct": 0.42,
+            "max_dd_pct": -0.54,
+            "sharpe": 0.179,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 5,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 6
+            }
+          }
+        },
+        {
+          "fold": "2026-02",
+          "base_case": {
+            "n_trades": 9,
+            "win_rate_pct": 55.6,
+            "avg_ret_pct": -0.071,
+            "median_ret_pct": 0.065,
+            "avg_R": -0.036,
+            "median_R": 0.032,
+            "total_ret_pct": -0.64,
+            "max_dd_pct": -0.85,
+            "sharpe": -0.253,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 3,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 6
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 9,
+            "win_rate_pct": 55.6,
+            "avg_ret_pct": -0.066,
+            "median_ret_pct": 0.065,
+            "avg_R": -0.033,
+            "median_R": 0.033,
+            "total_ret_pct": -0.6,
+            "max_dd_pct": -0.82,
+            "sharpe": -0.239,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 3,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 6
+            }
+          }
+        },
+        {
+          "fold": "2026-03",
+          "base_case": {
+            "n_trades": 10,
+            "win_rate_pct": 50.0,
+            "avg_ret_pct": -0.058,
+            "median_ret_pct": -0.074,
+            "avg_R": -0.029,
+            "median_R": -0.037,
+            "total_ret_pct": -0.58,
+            "max_dd_pct": -2.21,
+            "sharpe": -0.128,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 6,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 4
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 10,
+            "win_rate_pct": 50.0,
+            "avg_ret_pct": -0.057,
+            "median_ret_pct": -0.084,
+            "avg_R": -0.028,
+            "median_R": -0.042,
+            "total_ret_pct": -0.57,
+            "max_dd_pct": -2.19,
+            "sharpe": -0.126,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 6,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 4
+            }
+          }
+        },
+        {
+          "fold": "2026-04",
+          "base_case": {
+            "n_trades": 10,
+            "win_rate_pct": 30.0,
+            "avg_ret_pct": 0.095,
+            "median_ret_pct": -0.027,
+            "avg_R": 0.048,
+            "median_R": -0.013,
+            "total_ret_pct": 0.95,
+            "max_dd_pct": -0.8,
+            "sharpe": 0.211,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 4,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 6
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 8,
+            "win_rate_pct": 37.5,
+            "avg_ret_pct": 0.12,
+            "median_ret_pct": -0.089,
+            "avg_R": 0.06,
+            "median_R": -0.045,
+            "total_ret_pct": 0.95,
+            "max_dd_pct": -0.8,
+            "sharpe": 0.236,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 4,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 4
+            }
+          }
+        },
+        {
+          "fold": "2026-05",
+          "base_case": {
+            "n_trades": 7,
+            "win_rate_pct": 57.1,
+            "avg_ret_pct": 0.134,
+            "median_ret_pct": 0.238,
+            "avg_R": 0.067,
+            "median_R": 0.119,
+            "total_ret_pct": 0.94,
+            "max_dd_pct": -0.43,
+            "sharpe": 0.407,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 3,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 4
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 6,
+            "win_rate_pct": 66.7,
+            "avg_ret_pct": 0.156,
+            "median_ret_pct": 0.261,
+            "avg_R": 0.078,
+            "median_R": 0.131,
+            "total_ret_pct": 0.93,
+            "max_dd_pct": -0.43,
+            "sharpe": 0.442,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 3,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          }
+        }
+      ],
+      "fold_consistency_base": "7/11"
+    },
+    {
+      "min_rel_vol": 1.0,
+      "rsi_high": 65.0,
+      "tags": [
+        "vol_sweep",
+        "combo"
+      ],
+      "overall": {
+        "base_case": {
+          "n_trades": 97,
+          "win_rate_pct": 43.3,
+          "avg_ret_pct": -0.017,
+          "median_ret_pct": 0.0,
+          "avg_R": -0.008,
+          "median_R": 0.0,
+          "total_ret_pct": -1.67,
+          "max_dd_pct": -3.91,
+          "sharpe": -0.048,
+          "avg_trades_per_week": null,
+          "exit_reasons": {
+            "MACD_DOWN": 36,
+            "STOP_LOSS": 0,
+            "TAKE_PROFIT": 0,
+            "EOD": 61
+          }
+        },
+        "sensitivity_case": {
+          "n_trades": 86,
+          "win_rate_pct": 48.8,
+          "avg_ret_pct": -0.02,
+          "median_ret_pct": -0.011,
+          "avg_R": -0.01,
+          "median_R": -0.006,
+          "total_ret_pct": -1.76,
+          "max_dd_pct": -2.81,
+          "sharpe": -0.054,
+          "avg_trades_per_week": null,
+          "exit_reasons": {
+            "MACD_DOWN": 36,
+            "STOP_LOSS": 0,
+            "TAKE_PROFIT": 0,
+            "EOD": 50
+          }
+        }
+      },
+      "oos_agg": {
+        "base_case": {
+          "n_trades": 82,
+          "win_rate_pct": 46.3,
+          "avg_ret_pct": 0.023,
+          "median_ret_pct": 0.0,
+          "avg_R": 0.011,
+          "median_R": 0.0,
+          "total_ret_pct": 1.84,
+          "max_dd_pct": -2.09,
+          "sharpe": 0.076,
+          "avg_trades_per_week": 1.78,
+          "exit_reasons": {
+            "MACD_DOWN": 28,
+            "STOP_LOSS": 0,
+            "TAKE_PROFIT": 0,
+            "EOD": 54
+          }
+        },
+        "sensitivity_case": {
+          "n_trades": 73,
+          "win_rate_pct": 52.1,
+          "avg_ret_pct": 0.024,
+          "median_ret_pct": 0.033,
+          "avg_R": 0.012,
+          "median_R": 0.016,
+          "total_ret_pct": 1.74,
+          "max_dd_pct": -2.05,
+          "sharpe": 0.076,
+          "avg_trades_per_week": 1.59,
+          "exit_reasons": {
+            "MACD_DOWN": 28,
+            "STOP_LOSS": 0,
+            "TAKE_PROFIT": 0,
+            "EOD": 45
+          }
+        }
+      },
+      "oos_folds": [
+        {
+          "fold": "2025-07",
+          "base_case": {
+            "n_trades": 5,
+            "win_rate_pct": 40.0,
+            "avg_ret_pct": 0.034,
+            "median_ret_pct": 0.0,
+            "avg_R": 0.017,
+            "median_R": 0.0,
+            "total_ret_pct": 0.17,
+            "max_dd_pct": -0.2,
+            "sharpe": 0.206,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 3,
+            "win_rate_pct": 66.7,
+            "avg_ret_pct": 0.056,
+            "median_ret_pct": 0.14,
+            "avg_R": 0.028,
+            "median_R": 0.07,
+            "total_ret_pct": 0.17,
+            "max_dd_pct": -0.21,
+            "sharpe": 0.235,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 1
+            }
+          }
+        },
+        {
+          "fold": "2025-08",
+          "base_case": {
+            "n_trades": 3,
+            "win_rate_pct": 66.7,
+            "avg_ret_pct": 0.074,
+            "median_ret_pct": 0.054,
+            "avg_R": 0.037,
+            "median_R": 0.027,
+            "total_ret_pct": 0.22,
+            "max_dd_pct": 0.0,
+            "sharpe": 0.861,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 0,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 2,
+            "win_rate_pct": 100.0,
+            "avg_ret_pct": 0.117,
+            "median_ret_pct": 0.117,
+            "avg_R": 0.058,
+            "median_R": 0.058,
+            "total_ret_pct": 0.23,
+            "max_dd_pct": 0.0,
+            "sharpe": 1.48,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 0,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 2
+            }
+          }
+        },
+        {
+          "fold": "2025-09",
+          "base_case": {
+            "n_trades": 10,
+            "win_rate_pct": 50.0,
+            "avg_ret_pct": 0.027,
+            "median_ret_pct": 0.023,
+            "avg_R": 0.013,
+            "median_R": 0.012,
+            "total_ret_pct": 0.27,
+            "max_dd_pct": -0.9,
+            "sharpe": 0.089,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 3,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 7
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 9,
+            "win_rate_pct": 55.6,
+            "avg_ret_pct": 0.015,
+            "median_ret_pct": 0.043,
+            "avg_R": 0.008,
+            "median_R": 0.022,
+            "total_ret_pct": 0.13,
+            "max_dd_pct": -1.02,
+            "sharpe": 0.046,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 3,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 6
+            }
+          }
+        },
+        {
+          "fold": "2025-10",
+          "base_case": {
+            "n_trades": 6,
+            "win_rate_pct": 66.7,
+            "avg_ret_pct": 0.124,
+            "median_ret_pct": 0.09,
+            "avg_R": 0.062,
+            "median_R": 0.045,
+            "total_ret_pct": 0.74,
+            "max_dd_pct": -0.08,
+            "sharpe": 0.547,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 1,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 5
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 6,
+            "win_rate_pct": 66.7,
+            "avg_ret_pct": 0.126,
+            "median_ret_pct": 0.087,
+            "avg_R": 0.063,
+            "median_R": 0.043,
+            "total_ret_pct": 0.76,
+            "max_dd_pct": -0.08,
+            "sharpe": 0.548,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 1,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 5
+            }
+          }
+        },
+        {
+          "fold": "2025-11",
+          "base_case": {
+            "n_trades": 7,
+            "win_rate_pct": 0.0,
+            "avg_ret_pct": -0.154,
+            "median_ret_pct": -0.113,
+            "avg_R": -0.077,
+            "median_R": -0.057,
+            "total_ret_pct": -1.07,
+            "max_dd_pct": -0.58,
+            "sharpe": -0.89,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 4,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 6,
+            "win_rate_pct": 0.0,
+            "avg_ret_pct": -0.179,
+            "median_ret_pct": -0.121,
+            "avg_R": -0.089,
+            "median_R": -0.061,
+            "total_ret_pct": -1.07,
+            "max_dd_pct": -0.59,
+            "sharpe": -1.048,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 4,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 2
+            }
+          }
+        },
+        {
+          "fold": "2025-12",
+          "base_case": {
+            "n_trades": 8,
+            "win_rate_pct": 50.0,
+            "avg_ret_pct": 0.044,
+            "median_ret_pct": 0.042,
+            "avg_R": 0.022,
+            "median_R": 0.021,
+            "total_ret_pct": 0.35,
+            "max_dd_pct": -0.37,
+            "sharpe": 0.207,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 6
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 8,
+            "win_rate_pct": 50.0,
+            "avg_ret_pct": 0.039,
+            "median_ret_pct": 0.039,
+            "avg_R": 0.02,
+            "median_R": 0.019,
+            "total_ret_pct": 0.31,
+            "max_dd_pct": -0.38,
+            "sharpe": 0.191,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 6
+            }
+          }
+        },
+        {
+          "fold": "2026-01",
+          "base_case": {
+            "n_trades": 11,
+            "win_rate_pct": 45.5,
+            "avg_ret_pct": 0.017,
+            "median_ret_pct": 0.0,
+            "avg_R": 0.009,
+            "median_R": 0.0,
+            "total_ret_pct": 0.19,
+            "max_dd_pct": -0.54,
+            "sharpe": 0.085,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 4,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 7
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 10,
+            "win_rate_pct": 50.0,
+            "avg_ret_pct": 0.019,
+            "median_ret_pct": 0.0,
+            "avg_R": 0.009,
+            "median_R": 0.0,
+            "total_ret_pct": 0.19,
+            "max_dd_pct": -0.54,
+            "sharpe": 0.087,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 4,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 6
+            }
+          }
+        },
+        {
+          "fold": "2026-02",
+          "base_case": {
+            "n_trades": 8,
+            "win_rate_pct": 62.5,
+            "avg_ret_pct": -0.058,
+            "median_ret_pct": 0.085,
+            "avg_R": -0.029,
+            "median_R": 0.043,
+            "total_ret_pct": -0.46,
+            "max_dd_pct": -0.67,
+            "sharpe": -0.194,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 6
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 8,
+            "win_rate_pct": 62.5,
+            "avg_ret_pct": -0.052,
+            "median_ret_pct": 0.086,
+            "avg_R": -0.026,
+            "median_R": 0.043,
+            "total_ret_pct": -0.42,
+            "max_dd_pct": -0.65,
+            "sharpe": -0.178,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 6
+            }
+          }
+        },
+        {
+          "fold": "2026-03",
+          "base_case": {
+            "n_trades": 8,
+            "win_rate_pct": 50.0,
+            "avg_ret_pct": -0.073,
+            "median_ret_pct": -0.074,
+            "avg_R": -0.036,
+            "median_R": -0.037,
+            "total_ret_pct": -0.59,
+            "max_dd_pct": -1.81,
+            "sharpe": -0.158,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 4,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 4
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 8,
+            "win_rate_pct": 50.0,
+            "avg_ret_pct": -0.072,
+            "median_ret_pct": -0.084,
+            "avg_R": -0.036,
+            "median_R": -0.042,
+            "total_ret_pct": -0.58,
+            "max_dd_pct": -1.79,
+            "sharpe": -0.157,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 4,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 4
+            }
+          }
+        },
+        {
+          "fold": "2026-04",
+          "base_case": {
+            "n_trades": 9,
+            "win_rate_pct": 33.3,
+            "avg_ret_pct": 0.122,
+            "median_ret_pct": 0.0,
+            "avg_R": 0.061,
+            "median_R": 0.0,
+            "total_ret_pct": 1.09,
+            "max_dd_pct": -0.66,
+            "sharpe": 0.258,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 3,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 6
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 7,
+            "win_rate_pct": 42.9,
+            "avg_ret_pct": 0.157,
+            "median_ret_pct": -0.041,
+            "avg_R": 0.078,
+            "median_R": -0.021,
+            "total_ret_pct": 1.09,
+            "max_dd_pct": -0.67,
+            "sharpe": 0.292,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 3,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 4
+            }
+          }
+        },
+        {
+          "fold": "2026-05",
+          "base_case": {
+            "n_trades": 7,
+            "win_rate_pct": 57.1,
+            "avg_ret_pct": 0.134,
+            "median_ret_pct": 0.238,
+            "avg_R": 0.067,
+            "median_R": 0.119,
+            "total_ret_pct": 0.94,
+            "max_dd_pct": -0.43,
+            "sharpe": 0.407,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 3,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 4
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 6,
+            "win_rate_pct": 66.7,
+            "avg_ret_pct": 0.156,
+            "median_ret_pct": 0.261,
+            "avg_R": 0.078,
+            "median_R": 0.131,
+            "total_ret_pct": 0.93,
+            "max_dd_pct": -0.43,
+            "sharpe": 0.442,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 3,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          }
+        }
+      ],
+      "fold_consistency_base": "8/11"
+    },
+    {
+      "min_rel_vol": 1.1,
+      "rsi_high": 65.0,
+      "tags": [
+        "vol_sweep",
+        "combo"
+      ],
+      "overall": {
+        "base_case": {
+          "n_trades": 77,
+          "win_rate_pct": 45.5,
+          "avg_ret_pct": 0.011,
+          "median_ret_pct": 0.0,
+          "avg_R": 0.005,
+          "median_R": 0.0,
+          "total_ret_pct": 0.79,
+          "max_dd_pct": -3.19,
+          "sharpe": 0.03,
+          "avg_trades_per_week": null,
+          "exit_reasons": {
+            "MACD_DOWN": 26,
+            "STOP_LOSS": 0,
+            "TAKE_PROFIT": 0,
+            "EOD": 51
+          }
+        },
+        "sensitivity_case": {
+          "n_trades": 66,
+          "win_rate_pct": 53.0,
+          "avg_ret_pct": 0.011,
+          "median_ret_pct": 0.054,
+          "avg_R": 0.005,
+          "median_R": 0.027,
+          "total_ret_pct": 0.68,
+          "max_dd_pct": -2.15,
+          "sharpe": 0.028,
+          "avg_trades_per_week": null,
+          "exit_reasons": {
+            "MACD_DOWN": 26,
+            "STOP_LOSS": 0,
+            "TAKE_PROFIT": 0,
+            "EOD": 40
+          }
+        }
+      },
+      "oos_agg": {
+        "base_case": {
+          "n_trades": 64,
+          "win_rate_pct": 48.4,
+          "avg_ret_pct": 0.063,
+          "median_ret_pct": 0.0,
+          "avg_R": 0.032,
+          "median_R": 0.0,
+          "total_ret_pct": 4.12,
+          "max_dd_pct": -1.37,
+          "sharpe": 0.223,
+          "avg_trades_per_week": 1.39,
+          "exit_reasons": {
+            "MACD_DOWN": 19,
+            "STOP_LOSS": 0,
+            "TAKE_PROFIT": 0,
+            "EOD": 45
+          }
+        },
+        "sensitivity_case": {
+          "n_trades": 55,
+          "win_rate_pct": 56.4,
+          "avg_ret_pct": 0.072,
+          "median_ret_pct": 0.08,
+          "avg_R": 0.036,
+          "median_R": 0.04,
+          "total_ret_pct": 3.99,
+          "max_dd_pct": -1.34,
+          "sharpe": 0.232,
+          "avg_trades_per_week": 1.2,
+          "exit_reasons": {
+            "MACD_DOWN": 19,
+            "STOP_LOSS": 0,
+            "TAKE_PROFIT": 0,
+            "EOD": 36
+          }
+        }
+      },
+      "oos_folds": [
+        {
+          "fold": "2025-07",
+          "base_case": {
+            "n_trades": 5,
+            "win_rate_pct": 40.0,
+            "avg_ret_pct": 0.034,
+            "median_ret_pct": 0.0,
+            "avg_R": 0.017,
+            "median_R": 0.0,
+            "total_ret_pct": 0.17,
+            "max_dd_pct": -0.2,
+            "sharpe": 0.206,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 3,
+            "win_rate_pct": 66.7,
+            "avg_ret_pct": 0.056,
+            "median_ret_pct": 0.14,
+            "avg_R": 0.028,
+            "median_R": 0.07,
+            "total_ret_pct": 0.17,
+            "max_dd_pct": -0.21,
+            "sharpe": 0.235,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 1
+            }
+          }
+        },
+        {
+          "fold": "2025-08",
+          "base_case": {
+            "n_trades": 3,
+            "win_rate_pct": 66.7,
+            "avg_ret_pct": 0.074,
+            "median_ret_pct": 0.054,
+            "avg_R": 0.037,
+            "median_R": 0.027,
+            "total_ret_pct": 0.22,
+            "max_dd_pct": 0.0,
+            "sharpe": 0.861,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 0,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 2,
+            "win_rate_pct": 100.0,
+            "avg_ret_pct": 0.117,
+            "median_ret_pct": 0.117,
+            "avg_R": 0.058,
+            "median_R": 0.058,
+            "total_ret_pct": 0.23,
+            "max_dd_pct": 0.0,
+            "sharpe": 1.48,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 0,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 2
+            }
+          }
+        },
+        {
+          "fold": "2025-09",
+          "base_case": {
+            "n_trades": 8,
+            "win_rate_pct": 37.5,
+            "avg_ret_pct": 0.01,
+            "median_ret_pct": -0.003,
+            "avg_R": 0.005,
+            "median_R": -0.002,
+            "total_ret_pct": 0.07,
+            "max_dd_pct": -0.91,
+            "sharpe": 0.028,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 6
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 7,
+            "win_rate_pct": 42.9,
+            "avg_ret_pct": -0.007,
+            "median_ret_pct": -0.006,
+            "avg_R": -0.004,
+            "median_R": -0.003,
+            "total_ret_pct": -0.05,
+            "max_dd_pct": -1.02,
+            "sharpe": -0.019,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 5
+            }
+          }
+        },
+        {
+          "fold": "2025-10",
+          "base_case": {
+            "n_trades": 4,
+            "win_rate_pct": 75.0,
+            "avg_ret_pct": 0.188,
+            "median_ret_pct": 0.142,
+            "avg_R": 0.094,
+            "median_R": 0.071,
+            "total_ret_pct": 0.75,
+            "max_dd_pct": -0.08,
+            "sharpe": 0.718,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 1,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 4,
+            "win_rate_pct": 75.0,
+            "avg_ret_pct": 0.191,
+            "median_ret_pct": 0.142,
+            "avg_R": 0.096,
+            "median_R": 0.071,
+            "total_ret_pct": 0.77,
+            "max_dd_pct": -0.08,
+            "sharpe": 0.718,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 1,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          }
+        },
+        {
+          "fold": "2025-11",
+          "base_case": {
+            "n_trades": 6,
+            "win_rate_pct": 0.0,
+            "avg_ret_pct": -0.098,
+            "median_ret_pct": -0.077,
+            "avg_R": -0.049,
+            "median_R": -0.038,
+            "total_ret_pct": -0.58,
+            "max_dd_pct": -0.47,
+            "sharpe": -1.013,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 3,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 5,
+            "win_rate_pct": 0.0,
+            "avg_ret_pct": -0.118,
+            "median_ret_pct": -0.113,
+            "avg_R": -0.059,
+            "median_R": -0.056,
+            "total_ret_pct": -0.59,
+            "max_dd_pct": -0.48,
+            "sharpe": -1.278,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 3,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 2
+            }
+          }
+        },
+        {
+          "fold": "2025-12",
+          "base_case": {
+            "n_trades": 7,
+            "win_rate_pct": 57.1,
+            "avg_ret_pct": 0.087,
+            "median_ret_pct": 0.098,
+            "avg_R": 0.043,
+            "median_R": 0.049,
+            "total_ret_pct": 0.61,
+            "max_dd_pct": -0.21,
+            "sharpe": 0.461,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 5
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 7,
+            "win_rate_pct": 57.1,
+            "avg_ret_pct": 0.082,
+            "median_ret_pct": 0.094,
+            "avg_R": 0.041,
+            "median_R": 0.047,
+            "total_ret_pct": 0.58,
+            "max_dd_pct": -0.22,
+            "sharpe": 0.456,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 5
+            }
+          }
+        },
+        {
+          "fold": "2026-01",
+          "base_case": {
+            "n_trades": 8,
+            "win_rate_pct": 50.0,
+            "avg_ret_pct": 0.042,
+            "median_ret_pct": 0.013,
+            "avg_R": 0.021,
+            "median_R": 0.006,
+            "total_ret_pct": 0.33,
+            "max_dd_pct": -0.31,
+            "sharpe": 0.194,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 3,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 5
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 7,
+            "win_rate_pct": 57.1,
+            "avg_ret_pct": 0.046,
+            "median_ret_pct": 0.025,
+            "avg_R": 0.023,
+            "median_R": 0.012,
+            "total_ret_pct": 0.32,
+            "max_dd_pct": -0.32,
+            "sharpe": 0.191,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 3,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 4
+            }
+          }
+        },
+        {
+          "fold": "2026-02",
+          "base_case": {
+            "n_trades": 4,
+            "win_rate_pct": 75.0,
+            "avg_ret_pct": 0.091,
+            "median_ret_pct": 0.119,
+            "avg_R": 0.046,
+            "median_R": 0.059,
+            "total_ret_pct": 0.37,
+            "max_dd_pct": 0.0,
+            "sharpe": 0.833,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 0,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 4
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 4,
+            "win_rate_pct": 75.0,
+            "avg_ret_pct": 0.093,
+            "median_ret_pct": 0.12,
+            "avg_R": 0.046,
+            "median_R": 0.06,
+            "total_ret_pct": 0.37,
+            "max_dd_pct": 0.0,
+            "sharpe": 0.853,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 0,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 4
+            }
+          }
+        },
+        {
+          "fold": "2026-03",
+          "base_case": {
+            "n_trades": 7,
+            "win_rate_pct": 57.1,
+            "avg_ret_pct": -0.013,
+            "median_ret_pct": 0.064,
+            "avg_R": -0.006,
+            "median_R": 0.032,
+            "total_ret_pct": -0.09,
+            "max_dd_pct": -1.32,
+            "sharpe": -0.027,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 3,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 4
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 7,
+            "win_rate_pct": 57.1,
+            "avg_ret_pct": -0.012,
+            "median_ret_pct": 0.047,
+            "avg_R": -0.006,
+            "median_R": 0.023,
+            "total_ret_pct": -0.09,
+            "max_dd_pct": -1.3,
+            "sharpe": -0.025,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 3,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 4
+            }
+          }
+        },
+        {
+          "fold": "2026-04",
+          "base_case": {
+            "n_trades": 6,
+            "win_rate_pct": 33.3,
+            "avg_ret_pct": 0.197,
+            "median_ret_pct": 0.0,
+            "avg_R": 0.099,
+            "median_R": 0.0,
+            "total_ret_pct": 1.18,
+            "max_dd_pct": -0.18,
+            "sharpe": 0.442,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 1,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 5
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 4,
+            "win_rate_pct": 50.0,
+            "avg_ret_pct": 0.304,
+            "median_ret_pct": 0.183,
+            "avg_R": 0.152,
+            "median_R": 0.091,
+            "total_ret_pct": 1.22,
+            "max_dd_pct": -0.17,
+            "sharpe": 0.565,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 1,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          }
+        },
+        {
+          "fold": "2026-05",
+          "base_case": {
+            "n_trades": 6,
+            "win_rate_pct": 66.7,
+            "avg_ret_pct": 0.17,
+            "median_ret_pct": 0.271,
+            "avg_R": 0.085,
+            "median_R": 0.136,
+            "total_ret_pct": 1.02,
+            "max_dd_pct": -0.43,
+            "sharpe": 0.496,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 4
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 5,
+            "win_rate_pct": 80.0,
+            "avg_ret_pct": 0.203,
+            "median_ret_pct": 0.294,
+            "avg_R": 0.102,
+            "median_R": 0.147,
+            "total_ret_pct": 1.02,
+            "max_dd_pct": -0.43,
+            "sharpe": 0.547,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          }
+        }
+      ],
+      "fold_consistency_base": "9/11"
+    },
+    {
+      "min_rel_vol": 1.2,
+      "rsi_high": 65.0,
+      "tags": [
+        "vol_sweep",
+        "rsi_sweep",
+        "combo"
+      ],
+      "overall": {
+        "base_case": {
+          "n_trades": 59,
+          "win_rate_pct": 44.1,
+          "avg_ret_pct": 0.012,
+          "median_ret_pct": 0.0,
+          "avg_R": 0.006,
+          "median_R": 0.0,
+          "total_ret_pct": 0.68,
+          "max_dd_pct": -2.9,
+          "sharpe": 0.031,
+          "avg_trades_per_week": null,
+          "exit_reasons": {
+            "MACD_DOWN": 18,
+            "STOP_LOSS": 0,
+            "TAKE_PROFIT": 0,
+            "EOD": 41
+          }
+        },
+        "sensitivity_case": {
+          "n_trades": 48,
+          "win_rate_pct": 54.2,
+          "avg_ret_pct": 0.015,
+          "median_ret_pct": 0.077,
+          "avg_R": 0.007,
+          "median_R": 0.039,
+          "total_ret_pct": 0.67,
+          "max_dd_pct": -1.87,
+          "sharpe": 0.034,
+          "avg_trades_per_week": null,
+          "exit_reasons": {
+            "MACD_DOWN": 18,
+            "STOP_LOSS": 0,
+            "TAKE_PROFIT": 0,
+            "EOD": 30
+          }
+        }
+      },
+      "oos_agg": {
+        "base_case": {
+          "n_trades": 48,
+          "win_rate_pct": 45.8,
+          "avg_ret_pct": 0.067,
+          "median_ret_pct": 0.0,
+          "avg_R": 0.034,
+          "median_R": 0.0,
+          "total_ret_pct": 3.25,
+          "max_dd_pct": -1.16,
+          "sharpe": 0.22,
+          "avg_trades_per_week": 1.04,
+          "exit_reasons": {
+            "MACD_DOWN": 12,
+            "STOP_LOSS": 0,
+            "TAKE_PROFIT": 0,
+            "EOD": 36
+          }
+        },
+        "sensitivity_case": {
+          "n_trades": 39,
+          "win_rate_pct": 56.4,
+          "avg_ret_pct": 0.082,
+          "median_ret_pct": 0.094,
+          "avg_R": 0.041,
+          "median_R": 0.047,
+          "total_ret_pct": 3.24,
+          "max_dd_pct": -1.13,
+          "sharpe": 0.244,
+          "avg_trades_per_week": 0.85,
+          "exit_reasons": {
+            "MACD_DOWN": 12,
+            "STOP_LOSS": 0,
+            "TAKE_PROFIT": 0,
+            "EOD": 27
+          }
+        }
+      },
+      "oos_folds": [
+        {
+          "fold": "2025-07",
+          "base_case": {
+            "n_trades": 4,
+            "win_rate_pct": 25.0,
+            "avg_ret_pct": 0.007,
+            "median_ret_pct": 0.0,
+            "avg_R": 0.003,
+            "median_R": 0.0,
+            "total_ret_pct": 0.03,
+            "max_dd_pct": -0.2,
+            "sharpe": 0.038,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 2
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 2,
+            "win_rate_pct": 50.0,
+            "avg_ret_pct": 0.013,
+            "median_ret_pct": 0.013,
+            "avg_R": 0.007,
+            "median_R": 0.007,
+            "total_ret_pct": 0.03,
+            "max_dd_pct": -0.21,
+            "sharpe": 0.041,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 0
+            }
+          }
+        },
+        {
+          "fold": "2025-08",
+          "base_case": {
+            "n_trades": 3,
+            "win_rate_pct": 66.7,
+            "avg_ret_pct": 0.074,
+            "median_ret_pct": 0.054,
+            "avg_R": 0.037,
+            "median_R": 0.027,
+            "total_ret_pct": 0.22,
+            "max_dd_pct": 0.0,
+            "sharpe": 0.861,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 0,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 2,
+            "win_rate_pct": 100.0,
+            "avg_ret_pct": 0.117,
+            "median_ret_pct": 0.117,
+            "avg_R": 0.058,
+            "median_R": 0.058,
+            "total_ret_pct": 0.23,
+            "max_dd_pct": 0.0,
+            "sharpe": 1.48,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 0,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 2
+            }
+          }
+        },
+        {
+          "fold": "2025-09",
+          "base_case": {
+            "n_trades": 4,
+            "win_rate_pct": 0.0,
+            "avg_ret_pct": -0.168,
+            "median_ret_pct": -0.066,
+            "avg_R": -0.084,
+            "median_R": -0.033,
+            "total_ret_pct": -0.67,
+            "max_dd_pct": -0.67,
+            "sharpe": -0.659,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 1,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 3,
+            "win_rate_pct": 0.0,
+            "avg_ret_pct": -0.228,
+            "median_ret_pct": -0.113,
+            "avg_R": -0.114,
+            "median_R": -0.056,
+            "total_ret_pct": -0.68,
+            "max_dd_pct": -0.12,
+            "sharpe": -0.768,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 1,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 2
+            }
+          }
+        },
+        {
+          "fold": "2025-10",
+          "base_case": {
+            "n_trades": 3,
+            "win_rate_pct": 100.0,
+            "avg_ret_pct": 0.277,
+            "median_ret_pct": 0.143,
+            "avg_R": 0.139,
+            "median_R": 0.072,
+            "total_ret_pct": 0.83,
+            "max_dd_pct": 0.0,
+            "sharpe": 1.188,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 0,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 3,
+            "win_rate_pct": 100.0,
+            "avg_ret_pct": 0.281,
+            "median_ret_pct": 0.143,
+            "avg_R": 0.14,
+            "median_R": 0.072,
+            "total_ret_pct": 0.84,
+            "max_dd_pct": 0.0,
+            "sharpe": 1.168,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 0,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          }
+        },
+        {
+          "fold": "2025-11",
+          "base_case": {
+            "n_trades": 6,
+            "win_rate_pct": 0.0,
+            "avg_ret_pct": -0.098,
+            "median_ret_pct": -0.077,
+            "avg_R": -0.049,
+            "median_R": -0.038,
+            "total_ret_pct": -0.58,
+            "max_dd_pct": -0.47,
+            "sharpe": -1.013,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 3,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 5,
+            "win_rate_pct": 0.0,
+            "avg_ret_pct": -0.118,
+            "median_ret_pct": -0.113,
+            "avg_R": -0.059,
+            "median_R": -0.056,
+            "total_ret_pct": -0.59,
+            "max_dd_pct": -0.48,
+            "sharpe": -1.278,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 3,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 2
+            }
+          }
+        },
+        {
+          "fold": "2025-12",
+          "base_case": {
+            "n_trades": 4,
+            "win_rate_pct": 50.0,
+            "avg_ret_pct": 0.102,
+            "median_ret_pct": 0.042,
+            "avg_R": 0.051,
+            "median_R": 0.021,
+            "total_ret_pct": 0.41,
+            "max_dd_pct": -0.11,
+            "sharpe": 0.434,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 1,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 4,
+            "win_rate_pct": 50.0,
+            "avg_ret_pct": 0.093,
+            "median_ret_pct": 0.039,
+            "avg_R": 0.046,
+            "median_R": 0.019,
+            "total_ret_pct": 0.37,
+            "max_dd_pct": -0.11,
+            "sharpe": 0.417,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 1,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          }
+        },
+        {
+          "fold": "2026-01",
+          "base_case": {
+            "n_trades": 5,
+            "win_rate_pct": 40.0,
+            "avg_ret_pct": 0.048,
+            "median_ret_pct": 0.0,
+            "avg_R": 0.024,
+            "median_R": 0.0,
+            "total_ret_pct": 0.24,
+            "max_dd_pct": -0.31,
+            "sharpe": 0.188,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 1,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 4
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 4,
+            "win_rate_pct": 50.0,
+            "avg_ret_pct": 0.059,
+            "median_ret_pct": 0.051,
+            "avg_R": 0.029,
+            "median_R": 0.026,
+            "total_ret_pct": 0.23,
+            "max_dd_pct": -0.32,
+            "sharpe": 0.194,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 1,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          }
+        },
+        {
+          "fold": "2026-02",
+          "base_case": {
+            "n_trades": 2,
+            "win_rate_pct": 100.0,
+            "avg_ret_pct": 0.119,
+            "median_ret_pct": 0.119,
+            "avg_R": 0.059,
+            "median_R": 0.059,
+            "total_ret_pct": 0.24,
+            "max_dd_pct": 0.0,
+            "sharpe": 6.609,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 0,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 2
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 2,
+            "win_rate_pct": 100.0,
+            "avg_ret_pct": 0.12,
+            "median_ret_pct": 0.12,
+            "avg_R": 0.06,
+            "median_R": 0.06,
+            "total_ret_pct": 0.24,
+            "max_dd_pct": 0.0,
+            "sharpe": 6.023,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 0,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 2
+            }
+          }
+        },
+        {
+          "fold": "2026-03",
+          "base_case": {
+            "n_trades": 6,
+            "win_rate_pct": 66.7,
+            "avg_ret_pct": 0.021,
+            "median_ret_pct": 0.108,
+            "avg_R": 0.01,
+            "median_R": 0.054,
+            "total_ret_pct": 0.12,
+            "max_dd_pct": -1.11,
+            "sharpe": 0.042,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 4
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 6,
+            "win_rate_pct": 66.7,
+            "avg_ret_pct": 0.022,
+            "median_ret_pct": 0.106,
+            "avg_R": 0.011,
+            "median_R": 0.053,
+            "total_ret_pct": 0.13,
+            "max_dd_pct": -1.09,
+            "sharpe": 0.046,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 4
+            }
+          }
+        },
+        {
+          "fold": "2026-04",
+          "base_case": {
+            "n_trades": 5,
+            "win_rate_pct": 40.0,
+            "avg_ret_pct": 0.272,
+            "median_ret_pct": 0.0,
+            "avg_R": 0.136,
+            "median_R": 0.0,
+            "total_ret_pct": 1.36,
+            "max_dd_pct": 0.0,
+            "sharpe": 0.597,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 0,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 5
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 3,
+            "win_rate_pct": 66.7,
+            "avg_ret_pct": 0.462,
+            "median_ret_pct": 0.407,
+            "avg_R": 0.231,
+            "median_R": 0.203,
+            "total_ret_pct": 1.39,
+            "max_dd_pct": 0.0,
+            "sharpe": 0.866,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 0,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          }
+        },
+        {
+          "fold": "2026-05",
+          "base_case": {
+            "n_trades": 6,
+            "win_rate_pct": 66.7,
+            "avg_ret_pct": 0.17,
+            "median_ret_pct": 0.271,
+            "avg_R": 0.085,
+            "median_R": 0.136,
+            "total_ret_pct": 1.02,
+            "max_dd_pct": -0.43,
+            "sharpe": 0.496,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 4
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 5,
+            "win_rate_pct": 80.0,
+            "avg_ret_pct": 0.203,
+            "median_ret_pct": 0.294,
+            "avg_R": 0.102,
+            "median_R": 0.147,
+            "total_ret_pct": 1.02,
+            "max_dd_pct": -0.43,
+            "sharpe": 0.547,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          }
+        }
+      ],
+      "fold_consistency_base": "9/11"
+    },
+    {
+      "min_rel_vol": 1.2,
+      "rsi_high": 70.0,
+      "tags": [
+        "rsi_sweep",
+        "combo"
+      ],
+      "overall": {
+        "base_case": {
+          "n_trades": 69,
+          "win_rate_pct": 43.5,
+          "avg_ret_pct": 0.025,
+          "median_ret_pct": 0.0,
+          "avg_R": 0.013,
+          "median_R": 0.0,
+          "total_ret_pct": 1.71,
+          "max_dd_pct": -1.99,
+          "sharpe": 0.066,
+          "avg_trades_per_week": null,
+          "exit_reasons": {
+            "MACD_DOWN": 24,
+            "STOP_LOSS": 0,
+            "TAKE_PROFIT": 0,
+            "EOD": 45
+          }
+        },
+        "sensitivity_case": {
+          "n_trades": 56,
+          "win_rate_pct": 53.6,
+          "avg_ret_pct": 0.031,
+          "median_ret_pct": 0.054,
+          "avg_R": 0.015,
+          "median_R": 0.027,
+          "total_ret_pct": 1.7,
+          "max_dd_pct": -1.92,
+          "sharpe": 0.073,
+          "avg_trades_per_week": null,
+          "exit_reasons": {
+            "MACD_DOWN": 24,
+            "STOP_LOSS": 0,
+            "TAKE_PROFIT": 0,
+            "EOD": 32
+          }
+        }
+      },
+      "oos_agg": {
+        "base_case": {
+          "n_trades": 55,
+          "win_rate_pct": 43.6,
+          "avg_ret_pct": 0.059,
+          "median_ret_pct": 0.0,
+          "avg_R": 0.029,
+          "median_R": 0.0,
+          "total_ret_pct": 3.25,
+          "max_dd_pct": -1.16,
+          "sharpe": 0.202,
+          "avg_trades_per_week": 1.2,
+          "exit_reasons": {
+            "MACD_DOWN": 17,
+            "STOP_LOSS": 0,
+            "TAKE_PROFIT": 0,
+            "EOD": 38
+          }
+        },
+        "sensitivity_case": {
+          "n_trades": 44,
+          "win_rate_pct": 54.5,
+          "avg_ret_pct": 0.073,
+          "median_ret_pct": 0.066,
+          "avg_R": 0.036,
+          "median_R": 0.033,
+          "total_ret_pct": 3.23,
+          "max_dd_pct": -1.13,
+          "sharpe": 0.224,
+          "avg_trades_per_week": 0.96,
+          "exit_reasons": {
+            "MACD_DOWN": 17,
+            "STOP_LOSS": 0,
+            "TAKE_PROFIT": 0,
+            "EOD": 27
+          }
+        }
+      },
+      "oos_folds": [
+        {
+          "fold": "2025-07",
+          "base_case": {
+            "n_trades": 5,
+            "win_rate_pct": 20.0,
+            "avg_ret_pct": 0.005,
+            "median_ret_pct": 0.0,
+            "avg_R": 0.003,
+            "median_R": 0.0,
+            "total_ret_pct": 0.03,
+            "max_dd_pct": -0.2,
+            "sharpe": 0.035,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 2,
+            "win_rate_pct": 50.0,
+            "avg_ret_pct": 0.013,
+            "median_ret_pct": 0.013,
+            "avg_R": 0.007,
+            "median_R": 0.007,
+            "total_ret_pct": 0.03,
+            "max_dd_pct": -0.21,
+            "sharpe": 0.041,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 0
+            }
+          }
+        },
+        {
+          "fold": "2025-08",
+          "base_case": {
+            "n_trades": 3,
+            "win_rate_pct": 66.7,
+            "avg_ret_pct": 0.074,
+            "median_ret_pct": 0.054,
+            "avg_R": 0.037,
+            "median_R": 0.027,
+            "total_ret_pct": 0.22,
+            "max_dd_pct": 0.0,
+            "sharpe": 0.861,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 0,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 2,
+            "win_rate_pct": 100.0,
+            "avg_ret_pct": 0.117,
+            "median_ret_pct": 0.117,
+            "avg_R": 0.058,
+            "median_R": 0.058,
+            "total_ret_pct": 0.23,
+            "max_dd_pct": 0.0,
+            "sharpe": 1.48,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 0,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 2
+            }
+          }
+        },
+        {
+          "fold": "2025-09",
+          "base_case": {
+            "n_trades": 5,
+            "win_rate_pct": 0.0,
+            "avg_ret_pct": -0.151,
+            "median_ret_pct": -0.084,
+            "avg_R": -0.076,
+            "median_R": -0.042,
+            "total_ret_pct": -0.76,
+            "max_dd_pct": -0.76,
+            "sharpe": -0.674,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 4,
+            "win_rate_pct": 0.0,
+            "avg_ret_pct": -0.193,
+            "median_ret_pct": -0.1,
+            "avg_R": -0.096,
+            "median_R": -0.05,
+            "total_ret_pct": -0.77,
+            "max_dd_pct": -0.68,
+            "sharpe": -0.763,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 2
+            }
+          }
+        },
+        {
+          "fold": "2025-10",
+          "base_case": {
+            "n_trades": 4,
+            "win_rate_pct": 75.0,
+            "avg_ret_pct": 0.162,
+            "median_ret_pct": 0.142,
+            "avg_R": 0.081,
+            "median_R": 0.071,
+            "total_ret_pct": 0.65,
+            "max_dd_pct": -0.18,
+            "sharpe": 0.543,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 1,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 4,
+            "win_rate_pct": 75.0,
+            "avg_ret_pct": 0.161,
+            "median_ret_pct": 0.142,
+            "avg_R": 0.081,
+            "median_R": 0.071,
+            "total_ret_pct": 0.65,
+            "max_dd_pct": -0.2,
+            "sharpe": 0.521,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 1,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          }
+        },
+        {
+          "fold": "2025-11",
+          "base_case": {
+            "n_trades": 6,
+            "win_rate_pct": 0.0,
+            "avg_ret_pct": -0.098,
+            "median_ret_pct": -0.077,
+            "avg_R": -0.049,
+            "median_R": -0.038,
+            "total_ret_pct": -0.58,
+            "max_dd_pct": -0.47,
+            "sharpe": -1.013,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 3,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 5,
+            "win_rate_pct": 0.0,
+            "avg_ret_pct": -0.118,
+            "median_ret_pct": -0.113,
+            "avg_R": -0.059,
+            "median_R": -0.056,
+            "total_ret_pct": -0.59,
+            "max_dd_pct": -0.48,
+            "sharpe": -1.278,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 3,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 2
+            }
+          }
+        },
+        {
+          "fold": "2025-12",
+          "base_case": {
+            "n_trades": 4,
+            "win_rate_pct": 50.0,
+            "avg_ret_pct": 0.102,
+            "median_ret_pct": 0.042,
+            "avg_R": 0.051,
+            "median_R": 0.021,
+            "total_ret_pct": 0.41,
+            "max_dd_pct": -0.11,
+            "sharpe": 0.434,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 1,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 4,
+            "win_rate_pct": 50.0,
+            "avg_ret_pct": 0.093,
+            "median_ret_pct": 0.039,
+            "avg_R": 0.046,
+            "median_R": 0.019,
+            "total_ret_pct": 0.37,
+            "max_dd_pct": -0.11,
+            "sharpe": 0.417,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 1,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          }
+        },
+        {
+          "fold": "2026-01",
+          "base_case": {
+            "n_trades": 7,
+            "win_rate_pct": 42.9,
+            "avg_ret_pct": 0.03,
+            "median_ret_pct": 0.0,
+            "avg_R": 0.015,
+            "median_R": 0.0,
+            "total_ret_pct": 0.21,
+            "max_dd_pct": -0.31,
+            "sharpe": 0.138,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 3,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 4
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 6,
+            "win_rate_pct": 50.0,
+            "avg_ret_pct": 0.034,
+            "median_ret_pct": 0.024,
+            "avg_R": 0.017,
+            "median_R": 0.012,
+            "total_ret_pct": 0.2,
+            "max_dd_pct": -0.32,
+            "sharpe": 0.138,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 3,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          }
+        },
+        {
+          "fold": "2026-02",
+          "base_case": {
+            "n_trades": 2,
+            "win_rate_pct": 100.0,
+            "avg_ret_pct": 0.119,
+            "median_ret_pct": 0.119,
+            "avg_R": 0.059,
+            "median_R": 0.059,
+            "total_ret_pct": 0.24,
+            "max_dd_pct": 0.0,
+            "sharpe": 6.609,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 0,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 2
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 2,
+            "win_rate_pct": 100.0,
+            "avg_ret_pct": 0.12,
+            "median_ret_pct": 0.12,
+            "avg_R": 0.06,
+            "median_R": 0.06,
+            "total_ret_pct": 0.24,
+            "max_dd_pct": 0.0,
+            "sharpe": 6.023,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 0,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 2
+            }
+          }
+        },
+        {
+          "fold": "2026-03",
+          "base_case": {
+            "n_trades": 6,
+            "win_rate_pct": 66.7,
+            "avg_ret_pct": 0.021,
+            "median_ret_pct": 0.108,
+            "avg_R": 0.01,
+            "median_R": 0.054,
+            "total_ret_pct": 0.12,
+            "max_dd_pct": -1.11,
+            "sharpe": 0.042,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 4
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 6,
+            "win_rate_pct": 66.7,
+            "avg_ret_pct": 0.022,
+            "median_ret_pct": 0.106,
+            "avg_R": 0.011,
+            "median_R": 0.053,
+            "total_ret_pct": 0.13,
+            "max_dd_pct": -1.09,
+            "sharpe": 0.046,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 4
+            }
+          }
+        },
+        {
+          "fold": "2026-04",
+          "base_case": {
+            "n_trades": 5,
+            "win_rate_pct": 40.0,
+            "avg_ret_pct": 0.272,
+            "median_ret_pct": 0.0,
+            "avg_R": 0.136,
+            "median_R": 0.0,
+            "total_ret_pct": 1.36,
+            "max_dd_pct": 0.0,
+            "sharpe": 0.597,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 0,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 5
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 3,
+            "win_rate_pct": 66.7,
+            "avg_ret_pct": 0.462,
+            "median_ret_pct": 0.407,
+            "avg_R": 0.231,
+            "median_R": 0.203,
+            "total_ret_pct": 1.39,
+            "max_dd_pct": 0.0,
+            "sharpe": 0.866,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 0,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          }
+        },
+        {
+          "fold": "2026-05",
+          "base_case": {
+            "n_trades": 8,
+            "win_rate_pct": 62.5,
+            "avg_ret_pct": 0.165,
+            "median_ret_pct": 0.268,
+            "avg_R": 0.083,
+            "median_R": 0.134,
+            "total_ret_pct": 1.33,
+            "max_dd_pct": -0.43,
+            "sharpe": 0.548,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 3,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 5
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 6,
+            "win_rate_pct": 83.3,
+            "avg_ret_pct": 0.22,
+            "median_ret_pct": 0.299,
+            "avg_R": 0.11,
+            "median_R": 0.149,
+            "total_ret_pct": 1.32,
+            "max_dd_pct": -0.43,
+            "sharpe": 0.657,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 3,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          }
+        }
+      ],
+      "fold_consistency_base": "9/11"
+    },
+    {
+      "min_rel_vol": 1.2,
+      "rsi_high": 75.0,
+      "tags": [
+        "rsi_sweep",
+        "combo"
+      ],
+      "overall": {
+        "base_case": {
+          "n_trades": 72,
+          "win_rate_pct": 41.7,
+          "avg_ret_pct": 0.017,
+          "median_ret_pct": 0.0,
+          "avg_R": 0.009,
+          "median_R": 0.0,
+          "total_ret_pct": 1.2,
+          "max_dd_pct": -1.99,
+          "sharpe": 0.046,
+          "avg_trades_per_week": null,
+          "exit_reasons": {
+            "MACD_DOWN": 26,
+            "STOP_LOSS": 0,
+            "TAKE_PROFIT": 0,
+            "EOD": 46
+          }
+        },
+        "sensitivity_case": {
+          "n_trades": 59,
+          "win_rate_pct": 50.8,
+          "avg_ret_pct": 0.021,
+          "median_ret_pct": 0.038,
+          "avg_R": 0.01,
+          "median_R": 0.019,
+          "total_ret_pct": 1.19,
+          "max_dd_pct": -1.92,
+          "sharpe": 0.05,
+          "avg_trades_per_week": null,
+          "exit_reasons": {
+            "MACD_DOWN": 26,
+            "STOP_LOSS": 0,
+            "TAKE_PROFIT": 0,
+            "EOD": 33
+          }
+        }
+      },
+      "oos_agg": {
+        "base_case": {
+          "n_trades": 58,
+          "win_rate_pct": 41.4,
+          "avg_ret_pct": 0.047,
+          "median_ret_pct": 0.0,
+          "avg_R": 0.023,
+          "median_R": 0.0,
+          "total_ret_pct": 2.73,
+          "max_dd_pct": -1.29,
+          "sharpe": 0.163,
+          "avg_trades_per_week": 1.26,
+          "exit_reasons": {
+            "MACD_DOWN": 19,
+            "STOP_LOSS": 0,
+            "TAKE_PROFIT": 0,
+            "EOD": 39
+          }
+        },
+        "sensitivity_case": {
+          "n_trades": 47,
+          "win_rate_pct": 51.1,
+          "avg_ret_pct": 0.057,
+          "median_ret_pct": 0.047,
+          "avg_R": 0.029,
+          "median_R": 0.023,
+          "total_ret_pct": 2.71,
+          "max_dd_pct": -1.25,
+          "sharpe": 0.179,
+          "avg_trades_per_week": 1.02,
+          "exit_reasons": {
+            "MACD_DOWN": 19,
+            "STOP_LOSS": 0,
+            "TAKE_PROFIT": 0,
+            "EOD": 28
+          }
+        }
+      },
+      "oos_folds": [
+        {
+          "fold": "2025-07",
+          "base_case": {
+            "n_trades": 5,
+            "win_rate_pct": 20.0,
+            "avg_ret_pct": 0.005,
+            "median_ret_pct": 0.0,
+            "avg_R": 0.003,
+            "median_R": 0.0,
+            "total_ret_pct": 0.03,
+            "max_dd_pct": -0.2,
+            "sharpe": 0.035,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 2,
+            "win_rate_pct": 50.0,
+            "avg_ret_pct": 0.013,
+            "median_ret_pct": 0.013,
+            "avg_R": 0.007,
+            "median_R": 0.007,
+            "total_ret_pct": 0.03,
+            "max_dd_pct": -0.21,
+            "sharpe": 0.041,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 0
+            }
+          }
+        },
+        {
+          "fold": "2025-08",
+          "base_case": {
+            "n_trades": 3,
+            "win_rate_pct": 66.7,
+            "avg_ret_pct": 0.074,
+            "median_ret_pct": 0.054,
+            "avg_R": 0.037,
+            "median_R": 0.027,
+            "total_ret_pct": 0.22,
+            "max_dd_pct": 0.0,
+            "sharpe": 0.861,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 0,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 2,
+            "win_rate_pct": 100.0,
+            "avg_ret_pct": 0.117,
+            "median_ret_pct": 0.117,
+            "avg_R": 0.058,
+            "median_R": 0.058,
+            "total_ret_pct": 0.23,
+            "max_dd_pct": 0.0,
+            "sharpe": 1.48,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 0,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 2
+            }
+          }
+        },
+        {
+          "fold": "2025-09",
+          "base_case": {
+            "n_trades": 5,
+            "win_rate_pct": 0.0,
+            "avg_ret_pct": -0.151,
+            "median_ret_pct": -0.084,
+            "avg_R": -0.076,
+            "median_R": -0.042,
+            "total_ret_pct": -0.76,
+            "max_dd_pct": -0.76,
+            "sharpe": -0.674,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 4,
+            "win_rate_pct": 0.0,
+            "avg_ret_pct": -0.193,
+            "median_ret_pct": -0.1,
+            "avg_R": -0.096,
+            "median_R": -0.05,
+            "total_ret_pct": -0.77,
+            "max_dd_pct": -0.68,
+            "sharpe": -0.763,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 2
+            }
+          }
+        },
+        {
+          "fold": "2025-10",
+          "base_case": {
+            "n_trades": 4,
+            "win_rate_pct": 75.0,
+            "avg_ret_pct": 0.162,
+            "median_ret_pct": 0.142,
+            "avg_R": 0.081,
+            "median_R": 0.071,
+            "total_ret_pct": 0.65,
+            "max_dd_pct": -0.18,
+            "sharpe": 0.543,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 1,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 4,
+            "win_rate_pct": 75.0,
+            "avg_ret_pct": 0.161,
+            "median_ret_pct": 0.142,
+            "avg_R": 0.081,
+            "median_R": 0.071,
+            "total_ret_pct": 0.65,
+            "max_dd_pct": -0.2,
+            "sharpe": 0.521,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 1,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          }
+        },
+        {
+          "fold": "2025-11",
+          "base_case": {
+            "n_trades": 7,
+            "win_rate_pct": 0.0,
+            "avg_ret_pct": -0.088,
+            "median_ret_pct": -0.04,
+            "avg_R": -0.044,
+            "median_R": -0.02,
+            "total_ret_pct": -0.61,
+            "max_dd_pct": -0.5,
+            "sharpe": -0.955,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 3,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 4
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 6,
+            "win_rate_pct": 0.0,
+            "avg_ret_pct": -0.101,
+            "median_ret_pct": -0.077,
+            "avg_R": -0.051,
+            "median_R": -0.039,
+            "total_ret_pct": -0.61,
+            "max_dd_pct": -0.49,
+            "sharpe": -1.099,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 3,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          }
+        },
+        {
+          "fold": "2025-12",
+          "base_case": {
+            "n_trades": 4,
+            "win_rate_pct": 50.0,
+            "avg_ret_pct": 0.102,
+            "median_ret_pct": 0.042,
+            "avg_R": 0.051,
+            "median_R": 0.021,
+            "total_ret_pct": 0.41,
+            "max_dd_pct": -0.11,
+            "sharpe": 0.434,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 1,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 4,
+            "win_rate_pct": 50.0,
+            "avg_ret_pct": 0.093,
+            "median_ret_pct": 0.039,
+            "avg_R": 0.046,
+            "median_R": 0.019,
+            "total_ret_pct": 0.37,
+            "max_dd_pct": -0.11,
+            "sharpe": 0.417,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 1,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          }
+        },
+        {
+          "fold": "2026-01",
+          "base_case": {
+            "n_trades": 8,
+            "win_rate_pct": 37.5,
+            "avg_ret_pct": 0.003,
+            "median_ret_pct": -0.014,
+            "avg_R": 0.001,
+            "median_R": -0.007,
+            "total_ret_pct": 0.02,
+            "max_dd_pct": -0.31,
+            "sharpe": 0.013,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 4,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 4
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 7,
+            "win_rate_pct": 42.9,
+            "avg_ret_pct": 0.001,
+            "median_ret_pct": -0.025,
+            "avg_R": 0.0,
+            "median_R": -0.012,
+            "total_ret_pct": 0.0,
+            "max_dd_pct": -0.32,
+            "sharpe": 0.003,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 4,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          }
+        },
+        {
+          "fold": "2026-02",
+          "base_case": {
+            "n_trades": 2,
+            "win_rate_pct": 100.0,
+            "avg_ret_pct": 0.119,
+            "median_ret_pct": 0.119,
+            "avg_R": 0.059,
+            "median_R": 0.059,
+            "total_ret_pct": 0.24,
+            "max_dd_pct": 0.0,
+            "sharpe": 6.609,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 0,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 2
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 2,
+            "win_rate_pct": 100.0,
+            "avg_ret_pct": 0.12,
+            "median_ret_pct": 0.12,
+            "avg_R": 0.06,
+            "median_R": 0.06,
+            "total_ret_pct": 0.24,
+            "max_dd_pct": 0.0,
+            "sharpe": 6.023,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 0,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 2
+            }
+          }
+        },
+        {
+          "fold": "2026-03",
+          "base_case": {
+            "n_trades": 7,
+            "win_rate_pct": 57.1,
+            "avg_ret_pct": -0.023,
+            "median_ret_pct": 0.064,
+            "avg_R": -0.011,
+            "median_R": 0.032,
+            "total_ret_pct": -0.17,
+            "max_dd_pct": -1.24,
+            "sharpe": -0.049,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 3,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 4
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 7,
+            "win_rate_pct": 57.1,
+            "avg_ret_pct": -0.021,
+            "median_ret_pct": 0.047,
+            "avg_R": -0.01,
+            "median_R": 0.023,
+            "total_ret_pct": -0.15,
+            "max_dd_pct": -1.2,
+            "sharpe": -0.045,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 3,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 4
+            }
+          }
+        },
+        {
+          "fold": "2026-04",
+          "base_case": {
+            "n_trades": 5,
+            "win_rate_pct": 40.0,
+            "avg_ret_pct": 0.272,
+            "median_ret_pct": 0.0,
+            "avg_R": 0.136,
+            "median_R": 0.0,
+            "total_ret_pct": 1.36,
+            "max_dd_pct": 0.0,
+            "sharpe": 0.597,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 0,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 5
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 3,
+            "win_rate_pct": 66.7,
+            "avg_ret_pct": 0.462,
+            "median_ret_pct": 0.407,
+            "avg_R": 0.231,
+            "median_R": 0.203,
+            "total_ret_pct": 1.39,
+            "max_dd_pct": 0.0,
+            "sharpe": 0.866,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 0,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          }
+        },
+        {
+          "fold": "2026-05",
+          "base_case": {
+            "n_trades": 8,
+            "win_rate_pct": 62.5,
+            "avg_ret_pct": 0.165,
+            "median_ret_pct": 0.268,
+            "avg_R": 0.083,
+            "median_R": 0.134,
+            "total_ret_pct": 1.33,
+            "max_dd_pct": -0.43,
+            "sharpe": 0.548,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 3,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 5
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 6,
+            "win_rate_pct": 83.3,
+            "avg_ret_pct": 0.22,
+            "median_ret_pct": 0.299,
+            "avg_R": 0.11,
+            "median_R": 0.149,
+            "total_ret_pct": 1.32,
+            "max_dd_pct": -0.43,
+            "sharpe": 0.657,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 3,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          }
+        }
+      ],
+      "fold_consistency_base": "8/11"
+    },
+    {
+      "min_rel_vol": 1.1,
+      "rsi_high": 70.0,
+      "tags": [
+        "combo"
+      ],
+      "overall": {
+        "base_case": {
+          "n_trades": 91,
+          "win_rate_pct": 47.3,
+          "avg_ret_pct": 0.027,
+          "median_ret_pct": 0.0,
+          "avg_R": 0.013,
+          "median_R": 0.0,
+          "total_ret_pct": 2.4,
+          "max_dd_pct": -1.98,
+          "sharpe": 0.076,
+          "avg_trades_per_week": null,
+          "exit_reasons": {
+            "MACD_DOWN": 36,
+            "STOP_LOSS": 0,
+            "TAKE_PROFIT": 0,
+            "EOD": 55
+          }
+        },
+        "sensitivity_case": {
+          "n_trades": 78,
+          "win_rate_pct": 55.1,
+          "avg_ret_pct": 0.03,
+          "median_ret_pct": 0.054,
+          "avg_R": 0.015,
+          "median_R": 0.027,
+          "total_ret_pct": 2.27,
+          "max_dd_pct": -1.99,
+          "sharpe": 0.078,
+          "avg_trades_per_week": null,
+          "exit_reasons": {
+            "MACD_DOWN": 36,
+            "STOP_LOSS": 0,
+            "TAKE_PROFIT": 0,
+            "EOD": 42
+          }
+        }
+      },
+      "oos_agg": {
+        "base_case": {
+          "n_trades": 74,
+          "win_rate_pct": 48.6,
+          "avg_ret_pct": 0.059,
+          "median_ret_pct": 0.0,
+          "avg_R": 0.03,
+          "median_R": 0.0,
+          "total_ret_pct": 4.47,
+          "max_dd_pct": -1.37,
+          "sharpe": 0.221,
+          "avg_trades_per_week": 1.61,
+          "exit_reasons": {
+            "MACD_DOWN": 27,
+            "STOP_LOSS": 0,
+            "TAKE_PROFIT": 0,
+            "EOD": 47
+          }
+        },
+        "sensitivity_case": {
+          "n_trades": 63,
+          "win_rate_pct": 57.1,
+          "avg_ret_pct": 0.068,
+          "median_ret_pct": 0.072,
+          "avg_R": 0.034,
+          "median_R": 0.036,
+          "total_ret_pct": 4.33,
+          "max_dd_pct": -1.34,
+          "sharpe": 0.23,
+          "avg_trades_per_week": 1.37,
+          "exit_reasons": {
+            "MACD_DOWN": 27,
+            "STOP_LOSS": 0,
+            "TAKE_PROFIT": 0,
+            "EOD": 36
+          }
+        }
+      },
+      "oos_folds": [
+        {
+          "fold": "2025-07",
+          "base_case": {
+            "n_trades": 6,
+            "win_rate_pct": 33.3,
+            "avg_ret_pct": 0.028,
+            "median_ret_pct": 0.0,
+            "avg_R": 0.014,
+            "median_R": 0.0,
+            "total_ret_pct": 0.17,
+            "max_dd_pct": -0.2,
+            "sharpe": 0.192,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 4
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 3,
+            "win_rate_pct": 66.7,
+            "avg_ret_pct": 0.056,
+            "median_ret_pct": 0.14,
+            "avg_R": 0.028,
+            "median_R": 0.07,
+            "total_ret_pct": 0.17,
+            "max_dd_pct": -0.21,
+            "sharpe": 0.235,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 1
+            }
+          }
+        },
+        {
+          "fold": "2025-08",
+          "base_case": {
+            "n_trades": 3,
+            "win_rate_pct": 66.7,
+            "avg_ret_pct": 0.074,
+            "median_ret_pct": 0.054,
+            "avg_R": 0.037,
+            "median_R": 0.027,
+            "total_ret_pct": 0.22,
+            "max_dd_pct": 0.0,
+            "sharpe": 0.861,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 0,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 2,
+            "win_rate_pct": 100.0,
+            "avg_ret_pct": 0.117,
+            "median_ret_pct": 0.117,
+            "avg_R": 0.058,
+            "median_R": 0.058,
+            "total_ret_pct": 0.23,
+            "max_dd_pct": 0.0,
+            "sharpe": 1.48,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 0,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 2
+            }
+          }
+        },
+        {
+          "fold": "2025-09",
+          "base_case": {
+            "n_trades": 9,
+            "win_rate_pct": 33.3,
+            "avg_ret_pct": -0.001,
+            "median_ret_pct": -0.006,
+            "avg_R": -0.0,
+            "median_R": -0.003,
+            "total_ret_pct": -0.01,
+            "max_dd_pct": -0.99,
+            "sharpe": -0.003,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 3,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 6
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 8,
+            "win_rate_pct": 37.5,
+            "avg_ret_pct": -0.017,
+            "median_ret_pct": -0.046,
+            "avg_R": -0.009,
+            "median_R": -0.023,
+            "total_ret_pct": -0.14,
+            "max_dd_pct": -1.11,
+            "sharpe": -0.048,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 3,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 5
+            }
+          }
+        },
+        {
+          "fold": "2025-10",
+          "base_case": {
+            "n_trades": 5,
+            "win_rate_pct": 60.0,
+            "avg_ret_pct": 0.114,
+            "median_ret_pct": 0.142,
+            "avg_R": 0.057,
+            "median_R": 0.071,
+            "total_ret_pct": 0.57,
+            "max_dd_pct": -0.18,
+            "sharpe": 0.405,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 5,
+            "win_rate_pct": 60.0,
+            "avg_ret_pct": 0.113,
+            "median_ret_pct": 0.141,
+            "avg_R": 0.057,
+            "median_R": 0.07,
+            "total_ret_pct": 0.57,
+            "max_dd_pct": -0.2,
+            "sharpe": 0.392,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          }
+        },
+        {
+          "fold": "2025-11",
+          "base_case": {
+            "n_trades": 7,
+            "win_rate_pct": 14.3,
+            "avg_ret_pct": -0.068,
+            "median_ret_pct": -0.04,
+            "avg_R": -0.034,
+            "median_R": -0.02,
+            "total_ret_pct": -0.47,
+            "max_dd_pct": -0.58,
+            "sharpe": -0.573,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 4,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 6,
+            "win_rate_pct": 16.7,
+            "avg_ret_pct": -0.078,
+            "median_ret_pct": -0.077,
+            "avg_R": -0.039,
+            "median_R": -0.039,
+            "total_ret_pct": -0.47,
+            "max_dd_pct": -0.59,
+            "sharpe": -0.613,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 4,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 2
+            }
+          }
+        },
+        {
+          "fold": "2025-12",
+          "base_case": {
+            "n_trades": 7,
+            "win_rate_pct": 57.1,
+            "avg_ret_pct": 0.087,
+            "median_ret_pct": 0.098,
+            "avg_R": 0.043,
+            "median_R": 0.049,
+            "total_ret_pct": 0.61,
+            "max_dd_pct": -0.21,
+            "sharpe": 0.461,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 5
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 7,
+            "win_rate_pct": 57.1,
+            "avg_ret_pct": 0.082,
+            "median_ret_pct": 0.094,
+            "avg_R": 0.041,
+            "median_R": 0.047,
+            "total_ret_pct": 0.58,
+            "max_dd_pct": -0.22,
+            "sharpe": 0.456,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 5
+            }
+          }
+        },
+        {
+          "fold": "2026-01",
+          "base_case": {
+            "n_trades": 10,
+            "win_rate_pct": 50.0,
+            "avg_ret_pct": 0.03,
+            "median_ret_pct": 0.013,
+            "avg_R": 0.015,
+            "median_R": 0.006,
+            "total_ret_pct": 0.3,
+            "max_dd_pct": -0.31,
+            "sharpe": 0.155,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 5,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 5
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 9,
+            "win_rate_pct": 55.6,
+            "avg_ret_pct": 0.032,
+            "median_ret_pct": 0.025,
+            "avg_R": 0.016,
+            "median_R": 0.012,
+            "total_ret_pct": 0.28,
+            "max_dd_pct": -0.32,
+            "sharpe": 0.149,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 5,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 4
+            }
+          }
+        },
+        {
+          "fold": "2026-02",
+          "base_case": {
+            "n_trades": 4,
+            "win_rate_pct": 75.0,
+            "avg_ret_pct": 0.091,
+            "median_ret_pct": 0.119,
+            "avg_R": 0.046,
+            "median_R": 0.059,
+            "total_ret_pct": 0.37,
+            "max_dd_pct": 0.0,
+            "sharpe": 0.833,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 0,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 4
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 4,
+            "win_rate_pct": 75.0,
+            "avg_ret_pct": 0.093,
+            "median_ret_pct": 0.12,
+            "avg_R": 0.046,
+            "median_R": 0.06,
+            "total_ret_pct": 0.37,
+            "max_dd_pct": 0.0,
+            "sharpe": 0.853,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 0,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 4
+            }
+          }
+        },
+        {
+          "fold": "2026-03",
+          "base_case": {
+            "n_trades": 8,
+            "win_rate_pct": 62.5,
+            "avg_ret_pct": 0.016,
+            "median_ret_pct": 0.108,
+            "avg_R": 0.008,
+            "median_R": 0.054,
+            "total_ret_pct": 0.12,
+            "max_dd_pct": -1.32,
+            "sharpe": 0.036,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 4,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 4
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 8,
+            "win_rate_pct": 62.5,
+            "avg_ret_pct": 0.016,
+            "median_ret_pct": 0.106,
+            "avg_R": 0.008,
+            "median_R": 0.053,
+            "total_ret_pct": 0.12,
+            "max_dd_pct": -1.3,
+            "sharpe": 0.038,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 4,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 4
+            }
+          }
+        },
+        {
+          "fold": "2026-04",
+          "base_case": {
+            "n_trades": 6,
+            "win_rate_pct": 33.3,
+            "avg_ret_pct": 0.197,
+            "median_ret_pct": 0.0,
+            "avg_R": 0.099,
+            "median_R": 0.0,
+            "total_ret_pct": 1.18,
+            "max_dd_pct": -0.18,
+            "sharpe": 0.442,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 1,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 5
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 4,
+            "win_rate_pct": 50.0,
+            "avg_ret_pct": 0.304,
+            "median_ret_pct": 0.183,
+            "avg_R": 0.152,
+            "median_R": 0.091,
+            "total_ret_pct": 1.22,
+            "max_dd_pct": -0.17,
+            "sharpe": 0.565,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 1,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          }
+        },
+        {
+          "fold": "2026-05",
+          "base_case": {
+            "n_trades": 9,
+            "win_rate_pct": 66.7,
+            "avg_ret_pct": 0.148,
+            "median_ret_pct": 0.238,
+            "avg_R": 0.074,
+            "median_R": 0.119,
+            "total_ret_pct": 1.34,
+            "max_dd_pct": -0.43,
+            "sharpe": 0.519,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 4,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 5
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 7,
+            "win_rate_pct": 85.7,
+            "avg_ret_pct": 0.189,
+            "median_ret_pct": 0.294,
+            "avg_R": 0.095,
+            "median_R": 0.147,
+            "total_ret_pct": 1.33,
+            "max_dd_pct": -0.43,
+            "sharpe": 0.599,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 4,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          }
+        }
+      ],
+      "fold_consistency_base": "9/11"
+    },
+    {
+      "min_rel_vol": 1.0,
+      "rsi_high": 70.0,
+      "tags": [
+        "combo"
+      ],
+      "overall": {
+        "base_case": {
+          "n_trades": 111,
+          "win_rate_pct": 45.0,
+          "avg_ret_pct": -0.0,
+          "median_ret_pct": 0.0,
+          "avg_R": -0.0,
+          "median_R": 0.0,
+          "total_ret_pct": -0.1,
+          "max_dd_pct": -2.68,
+          "sharpe": -0.001,
+          "avg_trades_per_week": null,
+          "exit_reasons": {
+            "MACD_DOWN": 46,
+            "STOP_LOSS": 0,
+            "TAKE_PROFIT": 0,
+            "EOD": 65
+          }
+        },
+        "sensitivity_case": {
+          "n_trades": 98,
+          "win_rate_pct": 51.0,
+          "avg_ret_pct": -0.001,
+          "median_ret_pct": 0.015,
+          "avg_R": -0.001,
+          "median_R": 0.008,
+          "total_ret_pct": -0.21,
+          "max_dd_pct": -2.56,
+          "sharpe": -0.004,
+          "avg_trades_per_week": null,
+          "exit_reasons": {
+            "MACD_DOWN": 46,
+            "STOP_LOSS": 0,
+            "TAKE_PROFIT": 0,
+            "EOD": 52
+          }
+        }
+      },
+      "oos_agg": {
+        "base_case": {
+          "n_trades": 92,
+          "win_rate_pct": 46.7,
+          "avg_ret_pct": 0.024,
+          "median_ret_pct": 0.0,
+          "avg_R": 0.012,
+          "median_R": 0.0,
+          "total_ret_pct": 2.18,
+          "max_dd_pct": -2.09,
+          "sharpe": 0.084,
+          "avg_trades_per_week": 2.0,
+          "exit_reasons": {
+            "MACD_DOWN": 36,
+            "STOP_LOSS": 0,
+            "TAKE_PROFIT": 0,
+            "EOD": 56
+          }
+        },
+        "sensitivity_case": {
+          "n_trades": 81,
+          "win_rate_pct": 53.1,
+          "avg_ret_pct": 0.026,
+          "median_ret_pct": 0.033,
+          "avg_R": 0.013,
+          "median_R": 0.016,
+          "total_ret_pct": 2.07,
+          "max_dd_pct": -2.05,
+          "sharpe": 0.084,
+          "avg_trades_per_week": 1.76,
+          "exit_reasons": {
+            "MACD_DOWN": 36,
+            "STOP_LOSS": 0,
+            "TAKE_PROFIT": 0,
+            "EOD": 45
+          }
+        }
+      },
+      "oos_folds": [
+        {
+          "fold": "2025-07",
+          "base_case": {
+            "n_trades": 6,
+            "win_rate_pct": 33.3,
+            "avg_ret_pct": 0.028,
+            "median_ret_pct": 0.0,
+            "avg_R": 0.014,
+            "median_R": 0.0,
+            "total_ret_pct": 0.17,
+            "max_dd_pct": -0.2,
+            "sharpe": 0.192,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 4
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 3,
+            "win_rate_pct": 66.7,
+            "avg_ret_pct": 0.056,
+            "median_ret_pct": 0.14,
+            "avg_R": 0.028,
+            "median_R": 0.07,
+            "total_ret_pct": 0.17,
+            "max_dd_pct": -0.21,
+            "sharpe": 0.235,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 1
+            }
+          }
+        },
+        {
+          "fold": "2025-08",
+          "base_case": {
+            "n_trades": 3,
+            "win_rate_pct": 66.7,
+            "avg_ret_pct": 0.074,
+            "median_ret_pct": 0.054,
+            "avg_R": 0.037,
+            "median_R": 0.027,
+            "total_ret_pct": 0.22,
+            "max_dd_pct": 0.0,
+            "sharpe": 0.861,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 0,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 2,
+            "win_rate_pct": 100.0,
+            "avg_ret_pct": 0.117,
+            "median_ret_pct": 0.117,
+            "avg_R": 0.058,
+            "median_R": 0.058,
+            "total_ret_pct": 0.23,
+            "max_dd_pct": 0.0,
+            "sharpe": 1.48,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 0,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 2
+            }
+          }
+        },
+        {
+          "fold": "2025-09",
+          "base_case": {
+            "n_trades": 11,
+            "win_rate_pct": 45.5,
+            "avg_ret_pct": 0.017,
+            "median_ret_pct": 0.0,
+            "avg_R": 0.008,
+            "median_R": 0.0,
+            "total_ret_pct": 0.18,
+            "max_dd_pct": -0.99,
+            "sharpe": 0.059,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 4,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 7
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 10,
+            "win_rate_pct": 50.0,
+            "avg_ret_pct": 0.005,
+            "median_ret_pct": 0.018,
+            "avg_R": 0.003,
+            "median_R": 0.009,
+            "total_ret_pct": 0.05,
+            "max_dd_pct": -1.1,
+            "sharpe": 0.016,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 4,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 6
+            }
+          }
+        },
+        {
+          "fold": "2025-10",
+          "base_case": {
+            "n_trades": 7,
+            "win_rate_pct": 57.1,
+            "avg_ret_pct": 0.08,
+            "median_ret_pct": 0.037,
+            "avg_R": 0.04,
+            "median_R": 0.019,
+            "total_ret_pct": 0.56,
+            "max_dd_pct": -0.23,
+            "sharpe": 0.338,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 5
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 7,
+            "win_rate_pct": 57.1,
+            "avg_ret_pct": 0.08,
+            "median_ret_pct": 0.033,
+            "avg_R": 0.04,
+            "median_R": 0.016,
+            "total_ret_pct": 0.56,
+            "max_dd_pct": -0.24,
+            "sharpe": 0.328,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 5
+            }
+          }
+        },
+        {
+          "fold": "2025-11",
+          "base_case": {
+            "n_trades": 8,
+            "win_rate_pct": 12.5,
+            "avg_ret_pct": -0.121,
+            "median_ret_pct": -0.077,
+            "avg_R": -0.06,
+            "median_R": -0.038,
+            "total_ret_pct": -0.96,
+            "max_dd_pct": -0.58,
+            "sharpe": -0.651,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 5,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 7,
+            "win_rate_pct": 14.3,
+            "avg_ret_pct": -0.136,
+            "median_ret_pct": -0.113,
+            "avg_R": -0.068,
+            "median_R": -0.056,
+            "total_ret_pct": -0.95,
+            "max_dd_pct": -0.59,
+            "sharpe": -0.707,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 5,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 2
+            }
+          }
+        },
+        {
+          "fold": "2025-12",
+          "base_case": {
+            "n_trades": 8,
+            "win_rate_pct": 50.0,
+            "avg_ret_pct": 0.044,
+            "median_ret_pct": 0.042,
+            "avg_R": 0.022,
+            "median_R": 0.021,
+            "total_ret_pct": 0.35,
+            "max_dd_pct": -0.37,
+            "sharpe": 0.207,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 6
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 8,
+            "win_rate_pct": 50.0,
+            "avg_ret_pct": 0.039,
+            "median_ret_pct": 0.039,
+            "avg_R": 0.02,
+            "median_R": 0.019,
+            "total_ret_pct": 0.31,
+            "max_dd_pct": -0.38,
+            "sharpe": 0.191,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 6
+            }
+          }
+        },
+        {
+          "fold": "2026-01",
+          "base_case": {
+            "n_trades": 13,
+            "win_rate_pct": 46.2,
+            "avg_ret_pct": 0.012,
+            "median_ret_pct": 0.0,
+            "avg_R": 0.006,
+            "median_R": 0.0,
+            "total_ret_pct": 0.16,
+            "max_dd_pct": -0.54,
+            "sharpe": 0.064,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 6,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 7
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 12,
+            "win_rate_pct": 50.0,
+            "avg_ret_pct": 0.013,
+            "median_ret_pct": 0.0,
+            "avg_R": 0.006,
+            "median_R": 0.0,
+            "total_ret_pct": 0.15,
+            "max_dd_pct": -0.54,
+            "sharpe": 0.065,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 6,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 6
+            }
+          }
+        },
+        {
+          "fold": "2026-02",
+          "base_case": {
+            "n_trades": 8,
+            "win_rate_pct": 62.5,
+            "avg_ret_pct": -0.058,
+            "median_ret_pct": 0.085,
+            "avg_R": -0.029,
+            "median_R": 0.043,
+            "total_ret_pct": -0.46,
+            "max_dd_pct": -0.67,
+            "sharpe": -0.194,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 6
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 8,
+            "win_rate_pct": 62.5,
+            "avg_ret_pct": -0.052,
+            "median_ret_pct": 0.086,
+            "avg_R": -0.026,
+            "median_R": 0.043,
+            "total_ret_pct": -0.42,
+            "max_dd_pct": -0.65,
+            "sharpe": -0.178,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 2,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 6
+            }
+          }
+        },
+        {
+          "fold": "2026-03",
+          "base_case": {
+            "n_trades": 9,
+            "win_rate_pct": 55.6,
+            "avg_ret_pct": -0.041,
+            "median_ret_pct": 0.064,
+            "avg_R": -0.021,
+            "median_R": 0.032,
+            "total_ret_pct": -0.38,
+            "max_dd_pct": -1.81,
+            "sharpe": -0.093,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 5,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 4
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 9,
+            "win_rate_pct": 55.6,
+            "avg_ret_pct": -0.04,
+            "median_ret_pct": 0.047,
+            "avg_R": -0.02,
+            "median_R": 0.023,
+            "total_ret_pct": -0.37,
+            "max_dd_pct": -1.79,
+            "sharpe": -0.092,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 5,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 4
+            }
+          }
+        },
+        {
+          "fold": "2026-04",
+          "base_case": {
+            "n_trades": 9,
+            "win_rate_pct": 33.3,
+            "avg_ret_pct": 0.122,
+            "median_ret_pct": 0.0,
+            "avg_R": 0.061,
+            "median_R": 0.0,
+            "total_ret_pct": 1.09,
+            "max_dd_pct": -0.66,
+            "sharpe": 0.258,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 3,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 6
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 7,
+            "win_rate_pct": 42.9,
+            "avg_ret_pct": 0.157,
+            "median_ret_pct": -0.041,
+            "avg_R": 0.078,
+            "median_R": -0.021,
+            "total_ret_pct": 1.09,
+            "max_dd_pct": -0.67,
+            "sharpe": 0.292,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 3,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 4
+            }
+          }
+        },
+        {
+          "fold": "2026-05",
+          "base_case": {
+            "n_trades": 10,
+            "win_rate_pct": 60.0,
+            "avg_ret_pct": 0.125,
+            "median_ret_pct": 0.127,
+            "avg_R": 0.062,
+            "median_R": 0.063,
+            "total_ret_pct": 1.25,
+            "max_dd_pct": -0.43,
+            "sharpe": 0.446,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 5,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 5
+            }
+          },
+          "sensitivity_case": {
+            "n_trades": 8,
+            "win_rate_pct": 75.0,
+            "avg_ret_pct": 0.155,
+            "median_ret_pct": 0.261,
+            "avg_R": 0.078,
+            "median_R": 0.131,
+            "total_ret_pct": 1.25,
+            "max_dd_pct": -0.43,
+            "sharpe": 0.505,
+            "avg_trades_per_week": null,
+            "exit_reasons": {
+              "MACD_DOWN": 5,
+              "STOP_LOSS": 0,
+              "TAKE_PROFIT": 0,
+              "EOD": 3
+            }
+          }
+        }
+      ],
+      "fold_consistency_base": "8/11"
+    }
+  ]
+}
