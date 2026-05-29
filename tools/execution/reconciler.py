@@ -38,12 +38,15 @@ class ReconcileResult:
         return self.status in (ReconcileStatus.CLEAN, ReconcileStatus.FIXED)
 
 
-def run(trading_client) -> ReconcileResult:
+def run(trading_client, send_alert: bool = True) -> ReconcileResult:
     """
     Run full reconciliation against the live/paper Alpaca account.
 
     Args:
         trading_client: An alpaca.trading.TradingClient instance.
+        send_alert: When True (default), send a Telegram alert on any mismatch.
+            Callers that retry reconciliation on a backoff pass False on retry
+            passes so a single halt episode alerts only once.
 
     Returns:
         ReconcileResult — check .is_safe() before accepting intents.
@@ -59,7 +62,8 @@ def run(trading_client) -> ReconcileResult:
     except Exception as exc:
         msg = f"Failed to fetch broker state: {exc}"
         logger.critical(msg)
-        tg.alert_reconciliation_mismatch(msg)
+        if send_alert:
+            tg.alert_reconciliation_mismatch(msg)
         return ReconcileResult(ReconcileStatus.HALT, [msg])
 
     # ── Fetch DB state ─────────────────────────────────────────────────────────
@@ -85,7 +89,8 @@ def run(trading_client) -> ReconcileResult:
         )
         logger.critical(msg)
         messages.append(msg)
-        tg.alert_reconciliation_mismatch(msg)
+        if send_alert:
+            tg.alert_reconciliation_mismatch(msg)
         halted = True
 
     # ── Check 2: DB has position broker doesn't show ──────────────────────────
@@ -117,9 +122,19 @@ def run(trading_client) -> ReconcileResult:
             halted = True
 
     # ── Check 4: orphan orders in Alpaca not tracked in DB ────────────────────
-    broker_order_ids = {o.id for o in broker_orders}
+    # A filled bracket entry leaves TP + SL child orders resting at the broker.
+    # Those child IDs are never written to order_events by design (see
+    # trade_logger.update_order_fill "bracket child order — expected"). An open
+    # broker order whose symbol matches a held position is therefore a protective
+    # leg, NOT an orphan. Only flag orders that are neither logged in the DB nor
+    # attributable to a position we currently hold. A genuinely unknown position
+    # is still caught by Check 1 above.
     db_order_ids = {r["order_id"] for r in db_open_orders}
-    orphans = broker_order_ids - db_order_ids
+    orphans = {
+        o.id
+        for o in broker_orders
+        if o.id not in db_order_ids and o.symbol not in broker_symbols
+    }
 
     if orphans:
         msg = (
@@ -128,7 +143,8 @@ def run(trading_client) -> ReconcileResult:
         )
         logger.critical(msg)
         messages.append(msg)
-        tg.alert_reconciliation_mismatch(msg)
+        if send_alert:
+            tg.alert_reconciliation_mismatch(msg)
         halted = True
 
     # ── Result ────────────────────────────────────────────────────────────────

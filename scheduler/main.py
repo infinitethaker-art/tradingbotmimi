@@ -96,6 +96,24 @@ def _release_lock() -> None:
         pass
 
 
+def _readiness_action(ready: bool, thread_alive: bool, stopped: bool) -> str:
+    """
+    Decide what main() should do while waiting for Loop B to become ready.
+      "proceed"  — Loop B is ready; continue startup.
+      "shutdown" — a stop was requested; shut down cleanly.
+      "exit"     — Loop B's thread died before becoming ready (WS failure / crash);
+                   exit non-zero so the supervisor restarts the process.
+      "wait"     — Loop B is alive and still working (reconciling/connecting); wait.
+    """
+    if ready:
+        return "proceed"
+    if stopped:
+        return "shutdown"
+    if not thread_alive:
+        return "exit"
+    return "wait"
+
+
 def main() -> None:
     config.validate()
 
@@ -153,17 +171,35 @@ def main() -> None:
     loop_b_thread = threading.Thread(target=loop_b.start, name="LoopB", daemon=True)
     loop_b_thread.start()
 
-    # Wait for Loop B to be reconciled and WebSocket-connected before doing anything else
-    logger.info("Waiting for Loop B to reconcile and connect (timeout=30s)…")
-    ready = loop_b._ready.wait(timeout=30)
-    if not ready:
-        logger.critical(
-            "Loop B did not become ready within 30 seconds. "
-            "Reconciliation may have failed or WebSocket did not connect. Exiting."
+    # Wait for Loop B to be reconciled and WebSocket-connected before doing anything
+    # else. A genuine reconciliation HALT is handled INSIDE Loop B (it holds the
+    # process alive and retries on a backoff), so we must NOT kill the process on a
+    # fixed timeout — that is exactly what turned a halt into a restart storm. We keep
+    # waiting while Loop B's thread is alive and working; we only exit if that thread
+    # dies before becoming ready (a real WebSocket failure or crash).
+    logger.info("Waiting for Loop B to reconcile and connect…")
+    while True:
+        ready = loop_b._ready.wait(timeout=15)
+        action = _readiness_action(
+            ready=ready,
+            thread_alive=loop_b_thread.is_alive(),
+            stopped=stop_event.is_set(),
         )
-        loop_b.stop()
-        _release_lock()
-        sys.exit(1)
+        if action == "proceed":
+            break
+        if action == "shutdown":
+            logger.info("Shutdown requested before Loop B was ready. Stopping.")
+            loop_b.stop()
+            _release_lock()
+            return
+        if action == "exit":
+            logger.critical(
+                "Loop B thread exited before becoming ready "
+                "(WebSocket failure or crash). Exiting for supervisor restart."
+            )
+            _release_lock()
+            sys.exit(1)
+        logger.info("Loop B not ready yet (reconciling/connecting) — continuing to wait.")
 
     # Session start alert — sent only after Loop B is confirmed ready
     close_time = market_calendar.market_close_time()

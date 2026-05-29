@@ -21,6 +21,11 @@ from tools.reporting import trade_logger
 
 logger = logging.getLogger(__name__)
 
+# Backoff schedule for retrying reconciliation after a genuine HALT.
+# The process stays alive and retries quietly instead of crash-restarting.
+RECONCILE_RETRY_BASE_SEC = 30.0   # first wait after a halt
+RECONCILE_RETRY_MAX_SEC = 600.0   # cap backoff at 10 minutes
+
 
 class LoopB:
     def __init__(
@@ -64,13 +69,13 @@ class LoopB:
             paper=config.PAPER_TRADING,
         )
 
-        # Startup reconciliation — must pass before accepting intents
-        recon_result = reconciler.run(self._trading_client)
-        for msg in recon_result.messages:
-            logger.info("Reconcile: %s", msg)
-
-        if not recon_result.is_safe():
-            logger.critical("Reconciliation HALTED. Loop B will not accept intents.")
+        # Startup reconciliation — must pass before accepting intents.
+        # On a genuine mismatch we do NOT crash (Railway would turn that into a
+        # restart storm). We hold the process alive, alert once, and retry on a
+        # backoff until the broker and DB realign — or until stop() is called.
+        recon_result = self._reconcile_until_safe()
+        if recon_result is None:
+            logger.info("Loop B stopped before reconciliation reached a safe state.")
             return
 
         self._reconciled = True
@@ -96,6 +101,40 @@ class LoopB:
             on_ready=self._on_ws_ready,
         )
         self._ws.run()
+
+    def _reconcile_until_safe(self):
+        """
+        Run startup reconciliation, retrying with capped exponential backoff on a
+        HALT. Alerts only once per halt episode — the first attempt sends the
+        Telegram alert; retries are quiet. Announces recovery when the mismatch
+        clears. Returns the safe ReconcileResult, or None if stop() was called
+        before a safe state was reached.
+        """
+        alerted = False
+        attempt = 0
+        while not self._stop_event.is_set():
+            result = reconciler.run(self._trading_client, send_alert=not alerted)
+            for msg in result.messages:
+                logger.info("Reconcile: %s", msg)
+
+            if result.is_safe():
+                if alerted:
+                    tg.send_raw("✅ Reconciliation resolved — broker and DB agree. Resuming.")
+                    logger.info("Reconciliation recovered after %d retry attempt(s).", attempt)
+                return result
+
+            if not alerted:
+                logger.critical(
+                    "Reconciliation HALTED — holding process alive, retrying quietly on backoff."
+                )
+                alerted = True
+
+            attempt += 1
+            wait = min(RECONCILE_RETRY_BASE_SEC * (2 ** (attempt - 1)), RECONCILE_RETRY_MAX_SEC)
+            logger.warning("Reconciliation retry %d scheduled in %.0fs.", attempt, wait)
+            if self._stop_event.wait(timeout=wait):
+                return None
+        return None
 
     def _on_ws_ready(self) -> None:
         """Called by ws_client when authenticated and listening. Set ready if reconciled."""
