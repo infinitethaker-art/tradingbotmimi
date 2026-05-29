@@ -1,0 +1,77 @@
+{
+  "run_date": "2026-05-29T23:34:54.714220",
+  "symbol": "SPY",
+  "feed": "iex",
+  "config": {
+    "min_rel_vol": 1.1,
+    "rsi_high": 70.0,
+    "stop_loss_pct": 0.02,
+    "take_profit_pct": 0.04
+  },
+  "oos_folds": [
+    "2025-07",
+    "2025-08",
+    "2025-09",
+    "2025-10",
+    "2025-11",
+    "2025-12",
+    "2026-01",
+    "2026-02",
+    "2026-03",
+    "2026-04",
+    "2026-05"
+  ],
+  "commission": "0 (Alpaca equities)",
+  "slippage_sweep_bps_per_side": {
+    "0.0": {
+      "n": 74,
+      "win_pct": 48.6,
+      "avg_R": 0.0297,
+      "sharpe": 0.223,
+      "total_ret_pct": 4.47,
+      "max_dd_pct": -1.37
+    },
+    "1.0": {
+      "n": 74,
+      "win_pct": 47.3,
+      "avg_R": 0.0197,
+      "sharpe": 0.148,
+      "total_ret_pct": 2.94,
+      "max_dd_pct": -1.47
+    },
+    "2.0": {
+      "n": 74,
+      "win_pct": 45.9,
+      "avg_R": 0.0097,
+      "sharpe": 0.073,
+      "total_ret_pct": 1.42,
+      "max_dd_pct": -1.57
+    },
+    "5.0": {
+      "n": 74,
+      "win_pct": 39.2,
+      "avg_R": -0.0203,
+      "sharpe": -0.152,
+      "total_ret_pct": -2.98,
+      "max_dd_pct": -4.32
+    }
+  },
+  "breakeven_bps_per_side": 2.97,
+  "buy_and_hold_oos": {
+    "total_ret_pct": 22.62,
+    "max_dd_pct": -9.26
+  },
+  "random_entry": {
+    "cost_bps_per_side": 2.0,
+    "n_sims": 500,
+    "mean_trades": 66,
+    "totRet_mean": -1.57,
+    "totRet_p10": -4.42,
+    "totRet_p50": -1.52,
+    "totRet_p90": 1.34,
+    "strategy_totRet": 1.42,
+    "strategy_avgR": 0.0097,
+    "strategy_sharpe": 0.073,
+    "strategy_pctile_vs_random": 90.2
+  }
+}
