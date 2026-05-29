@@ -75,6 +75,21 @@ def _already_submitted(client: TradingClient, client_order_id: str) -> bool:
     return False
 
 
+def _has_broker_exposure(client: TradingClient, symbol: str) -> bool:
+    """
+    True if the broker already holds a position in *symbol* or has any open order
+    for it. Used to block duplicate entries: the in-memory has_open() check in
+    Loop A can miss the window between submitting an entry and its fill (or a missed
+    WS fill can leave it stale). The broker is the source of truth. Errors propagate
+    — if we cannot verify broker state, we must not risk submitting a duplicate.
+    """
+    if any(p.symbol == symbol for p in client.get_all_positions()):
+        return True
+    if any(o.symbol == symbol for o in client.get_orders()):
+        return True
+    return False
+
+
 def compute_qty(bar_price: float) -> int:
     """
     Fixed notional position sizing per plan.
@@ -120,8 +135,19 @@ def submit_bracket_entry(
     order_type_tag = "SMOKE" if is_smoke_test else "ENTER"
     client_order_id = make_client_order_id(symbol, order_type_tag, bar_timestamp)
 
-    # Idempotency check
+    # Idempotency check (same client_order_id / same bar)
     if _already_submitted(client, client_order_id):
+        return None
+
+    # Duplicate-entry guard against the broker (source of truth). Covers the
+    # submit->fill window and missed WS fills that the in-memory has_open() check
+    # in Loop A cannot. Never open a second position in a symbol already held or
+    # with a working order.
+    if _has_broker_exposure(client, symbol):
+        logger.warning(
+            "submit_bracket_entry: broker already has a position or open order for %s "
+            "— skipping duplicate entry.", symbol,
+        )
         return None
 
     qty = int(effective_notional / bar_close)
