@@ -28,6 +28,12 @@ reconciled CLEAN and resumed. Root cause of the divergence NOT yet confirmed
 Both positions closed by time-exit; neither TP nor SL hit. Feed IEX.
 (My −$8.82 estimate from rounded alert prices matched the official −$8.81 to the cent. Paper — validates plumbing, not edge.)
 
+**Both rejections were `SYMBOL_ALREADY_OPEN`** (re-entry guard working): AAPL re-signalled
+on the 14:00 bar while already held (entered 13:45); TSLA re-signalled on the 16:30 bar
+while already held (entered 16:15). RSI/vol/MACD all passed both times — the strategy keeps
+signalling a held symbol on consecutive bars. This is the exact pattern that, *without* the
+guard, caused the 05-28 double-entry → HALT incident. Today it was correctly blocked.
+
 **Time-exit note (AAPL):** first market-sell attempt was rejected —
 `insufficient qty available (requested 2, available 0), held_for_orders: 2` — the
 shares were reserved by the open bracket TP/SL legs (related order
