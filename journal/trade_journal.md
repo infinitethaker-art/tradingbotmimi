@@ -24,9 +24,9 @@ reconciled CLEAN and resumed. Root cause of the divergence NOT yet confirmed
 | AAPL | long | 2 sh | $313.99 | $311.41 (time exit) | AAPL_20260529_ENTER_1330 | MACD 0.242, RSI 68.9, rel-vol 2.94x | −$5.16 |
 | TSLA | long | 1 sh | $437.98 | $434.32 (time exit) | TSLA_20260529_ENTER_1600 | MACD 0.072, RSI 52.1, rel-vol 1.50x | −$3.66 |
 
-**Session result:** 2 entries taken, ≥1 rejected (45 scans by the 12:00 ET midday ping).
-Realized PnL ≈ **−$8.82**. Both closed by time-exit; neither TP nor SL hit. Feed IEX.
-(Paper PnL — validates plumbing, not edge.)
+**Session result (daily report):** 115 scans · 4 signals · **2 taken** · **2 rejected** · 4 fills · realized PnL **−$8.81**.
+Both positions closed by time-exit; neither TP nor SL hit. Feed IEX.
+(My −$8.82 estimate from rounded alert prices matched the official −$8.81 to the cent. Paper — validates plumbing, not edge.)
 
 **Time-exit note (AAPL):** first market-sell attempt was rejected —
 `insufficient qty available (requested 2, available 0), held_for_orders: 2` — the
