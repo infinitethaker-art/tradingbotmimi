@@ -1,0 +1,152 @@
+{
+  "run_date": "2026-05-30T00:13:09.320921",
+  "feed": "iex",
+  "config": {
+    "min_rel_vol": 1.1,
+    "rsi_high": 70.0
+  },
+  "commission": "0 (Alpaca equities)",
+  "symbols": {
+    "SPY": {
+      "price": 755.95,
+      "n_folds": 11,
+      "oos_trades": 74,
+      "penny_bps": 0.13,
+      "live_spread_bps": null,
+      "gross": {
+        "n": 74,
+        "win_pct": 48.6,
+        "avg_R": 0.0297,
+        "sharpe": 0.223,
+        "total_ret_pct": 4.47,
+        "max_dd_pct": -1.37
+      },
+      "net_penny": {
+        "n": 74,
+        "win_pct": 48.6,
+        "avg_R": 0.0291,
+        "sharpe": 0.218,
+        "total_ret_pct": 4.37,
+        "max_dd_pct": -1.38
+      },
+      "net_live": null
+    },
+    "QQQ": {
+      "price": 737.86,
+      "n_folds": 11,
+      "oos_trades": 65,
+      "penny_bps": 0.14,
+      "live_spread_bps": 1.22,
+      "gross": {
+        "n": 65,
+        "win_pct": 49.2,
+        "avg_R": 0.0276,
+        "sharpe": 0.131,
+        "total_ret_pct": 3.59,
+        "max_dd_pct": -1.59
+      },
+      "net_penny": {
+        "n": 65,
+        "win_pct": 49.2,
+        "avg_R": 0.0269,
+        "sharpe": 0.128,
+        "total_ret_pct": 3.49,
+        "max_dd_pct": -1.61
+      },
+      "net_live": {
+        "n": 65,
+        "win_pct": 47.7,
+        "avg_R": 0.0215,
+        "sharpe": 0.102,
+        "total_ret_pct": 2.77,
+        "max_dd_pct": -1.76
+      }
+    },
+    "AAPL": {
+      "price": 311.48,
+      "n_folds": 11,
+      "oos_trades": 49,
+      "penny_bps": 0.32,
+      "live_spread_bps": null,
+      "gross": {
+        "n": 49,
+        "win_pct": 38.8,
+        "avg_R": 0.0092,
+        "sharpe": 0.04,
+        "total_ret_pct": 0.86,
+        "max_dd_pct": -2.28
+      },
+      "net_penny": {
+        "n": 49,
+        "win_pct": 38.8,
+        "avg_R": 0.0076,
+        "sharpe": 0.033,
+        "total_ret_pct": 0.7,
+        "max_dd_pct": -2.35
+      },
+      "net_live": null
+    },
+    "NVDA": {
+      "price": 212.46,
+      "n_folds": 11,
+      "oos_trades": 60,
+      "penny_bps": 0.47,
+      "live_spread_bps": 750.5,
+      "gross": {
+        "n": 60,
+        "win_pct": 33.3,
+        "avg_R": 0.0042,
+        "sharpe": 0.01,
+        "total_ret_pct": 0.3,
+        "max_dd_pct": -5.3
+      },
+      "net_penny": {
+        "n": 60,
+        "win_pct": 33.3,
+        "avg_R": 0.0018,
+        "sharpe": 0.004,
+        "total_ret_pct": 0.01,
+        "max_dd_pct": -5.39
+      },
+      "net_live": {
+        "n": 60,
+        "win_pct": 0.0,
+        "avg_R": -3.7483,
+        "sharpe": -9.062,
+        "total_ret_pct": -99.07,
+        "max_dd_pct": -98.99
+      }
+    },
+    "TSLA": {
+      "price": 435.08,
+      "n_folds": 11,
+      "oos_trades": 64,
+      "penny_bps": 0.23,
+      "live_spread_bps": 1005.12,
+      "gross": {
+        "n": 64,
+        "win_pct": 32.8,
+        "avg_R": -0.0496,
+        "sharpe": -0.095,
+        "total_ret_pct": -6.47,
+        "max_dd_pct": -10.38
+      },
+      "net_penny": {
+        "n": 64,
+        "win_pct": 32.8,
+        "avg_R": -0.0507,
+        "sharpe": -0.098,
+        "total_ret_pct": -6.61,
+        "max_dd_pct": -10.46
+      },
+      "net_live": {
+        "n": 64,
+        "win_pct": 0.0,
+        "avg_R": -5.0752,
+        "sharpe": -9.776,
+        "total_ret_pct": -99.89,
+        "max_dd_pct": -99.88
+      }
+    }
+  }
+}
